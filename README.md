@@ -20,4 +20,4 @@
 
 交流学习就好，在issue界面可以提交问题，同时可以用下载到本地进行编译和玩耍（虽然并没有什么实用或者好玩的软件）.
 
-## "Stay hunger, stay fool"
+## "Stay hungery, stay foolish"
