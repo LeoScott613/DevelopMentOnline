@@ -1,0 +1,9 @@
+double can't be %
+it must be tranformed into int(will lose float digits, (int)3.14->3; also (int)3.94->3;
+e.g.
+
+double result(60);
+int rec;
+rec=(int)result%60;     //rec==0
+
+int类型变量/int类型变量=int值

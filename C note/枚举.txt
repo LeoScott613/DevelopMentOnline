@@ -1,0 +1,128 @@
+枚举的定义枚举类型定义的一般形式为：
+ enum 枚举名{ 枚举值表 };
+在枚举值表中应罗列出所有可用值。这些值也称为枚举元素。
+
+例如：
+
+该枚举名为weekday，枚举值共有7个，即一周中的七天。凡被说明为weekday类型变量的取值只能是七天中的某一天。
+
+2.枚举变量的说明
+如同结构和联合一样，枚举变量也可用不同的方式说明，即先定义后说明，同时定义说明或直接说明。
+
+设有变量a,b,c被说明为上述的weekday，可采用下述任一种方式：
+
+enum weekday{ sun,mou,tue,wed,thu,fri,sat };
+enum weekday a,b,c;
+或者为：
+
+enum weekday{sun,mou,tue,wed,thu,fri,sat }a,b,c;
+或者为：
+
+enum {sun,mou,tue,wed,thu,fri,sat }a,b,c;
+11.10.2 枚举类型变量的赋值和使用
+枚举类型在使用中有以下规定：
+
+1.枚举值是常量，不是变量。不能在程序中用赋值语句再对它赋值。
+例如对枚举weekday的元素再作以下赋值：
+
+sun=5;
+mon=2;
+sun=mon;
+都是错误的。
+
+2.枚举元素本身由系统定义了一个表示序号的数值，从0开始顺序定义为0，1，2…。如在weekday中，sun值为0，mon值为1，…,sat值为6。
+【例11.10】
+main(){
+    enum weekday
+    { sun,mon,tue,wed,thu,fri,sat } a,b,c;
+    a=sun;
+    b=mon;
+    c=tue;
+    printf("%d,%d,%d",a,b,c);
+}
+说明：
+只能把枚举值赋予枚举变量，不能把元素的数值直接赋予枚举变量。如：
+
+ a=sum;
+ b=mon;
+是正确的。而：
+
+a=0;
+b=1;
+是错误的。如一定要把数值赋予枚举变量，则必须用强制类型转换。
+
+如：
+
+ a=(enum weekday)2;
+其意义是将顺序号为2的枚举元素赋予枚举变量a，相当于：
+
+ a=tue;
+还应该说明的是枚举元素不是字符常量也不是字符串常量，使用时不要加单、双引号。
+
+【例11.11】
+main(){
+    enum body
+    { a,b,c,d } month[31],j;
+    int i;
+    j=a;
+    for(i=1;i<=30;i++){
+      month[i]=j;
+      j++;
+      if (j>d) j=a;
+    }
+    for(i=1;i<=30;i++){
+      switch(month[i])
+      {
+        case a:printf(" %2d  %c\t",i,'a'); break;
+        case b:printf(" %2d  %c\t",i,'b'); break;
+        case c:printf(" %2d  %c\t",i,'c'); break;
+        case d:printf(" %2d  %c\t",i,'d'); break;
+        default:break;
+      }
+    }
+    printf("\n");
+}
+11.11类型定义符typedef
+Ｃ语言不仅提供了丰富的数据类型，而且还允许由用户自己定义类型说明符，也就是说允许由用户为数据类型取“别名”。类型定义符typedef即可用来完成此功能。例如，有整型量a,b,其说明如下：
+
+ int a,b;
+其中int是整型变量的类型说明符。int的完整写法为integer，为了增加程序的可读性，可把整型说明符用typedef定义为：
+
+typedef int INTEGER
+这以后就可用INTEGER来代替int作整型变量的类型说明了。
+
+例如：
+
+ INTEGER a,b;
+它等效于：
+
+ int a,b;
+用typedef定义数组、指针、结构等类型将带来很大的方便，不仅使程序书写简单而且使意义更为明确，因而增强了可读性。
+
+例如：
+
+typedef char NAME[20]; 表示NAME是字符数组类型，数组长度为20。然后可用NAME 说明变量，如：
+
+ NAME a1,a2,s1,s2;
+完全等效于：
+
+ char a1[20],a2[20],s1[20],s2[20]
+又如：
+
+  typedef struct stu
+    { char name[20];
+      int age;
+      char sex;
+    } STU;
+定义STU表示stu的结构类型，然后可用STU来说明结构变量：
+
+STU body1,body2;
+typedef定义的一般形式为：
+
+typedef 原类型名 新类型名
+
+其中原类型名中含有定义部分，新类型名一般用大写表示，以便于区别。
+
+有时也可用宏定义来代替typedef的功能，但是宏定义是由预处理完成的，而typedef则是在编译时完成的，后者更为灵活方便。
+
+转载于:https://www.cnblogs.com/SFHa/p/8779324.html

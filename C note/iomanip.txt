@@ -1,0 +1,4 @@
+std::fixed     
+//C++控制台程序在显示大一点的数字时会采用科学计数法，使用std::fixed可以使其显示为浮点形式
+std::setprecision()       
+//这个函数不仅仅用于保留几位小数，还用于保留几位有效数字。使用setprecision之后，程序后续的显示方式也会跟着改变，也就是说setprecision的改变时永久的。而precision()不是。

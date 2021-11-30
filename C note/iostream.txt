@@ -1,0 +1,5 @@
+int a(2),b(1);
+double c(a),d(b);
+double rec1,rec2;
+rec1=b/a;     //rec1==0
+rec2=d/c;     //rec2==0.5
