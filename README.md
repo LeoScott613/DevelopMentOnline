@@ -1,6 +1,6 @@
 # DevelopMentOnline
 **Quite a difficulty to create this repository**  
-*有时候push会成功但是大部分时候都会失败...基本上只能用git GUI*
+*有时候push会成功但是大部分时候都会失败...基本上只能用git GUI...最后感觉还是proxy的问题吧*
 
 ## $$1-\infty$$
 *放到github后只能脑补公式了*
