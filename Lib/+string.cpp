@@ -11,6 +11,6 @@ int main()
     n=head+appen;
     cout<<p<<endl;
     cout<<n<<endl;
-    cout<<"\nok"<<endl;
+    //cout<<"\nok"<<endl;
     return 0;
 }
