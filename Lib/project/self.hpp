@@ -1,6 +1,17 @@
 #pragma once
 #include <string>
-class proj{
+#include <iostream>
+using namespace std;
+class proj
+{
 public:
     std::string name;
+
+private:
+    void dis();
 };
+
+void proj::dis()
+{
+    cout<<"HelloProject!"<<endl;
+}
