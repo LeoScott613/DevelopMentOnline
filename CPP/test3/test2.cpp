@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-char const addsig = '+', equalsig='=';
+char const addsig = '+', equalsig = '=';
 int recursion(int num)
 {
     /*static*/ int sum;
@@ -10,8 +10,9 @@ int recursion(int num)
     int i(1);
     for (; i < num; i++)
         cout << i << addsig;
-    cout << i << equalsig << sum << endl;
-    //cout << sum << endl;
+    if (i > 1)
+        cout << i << equalsig << sum << endl;
+    // cout << sum << endl;
     return sum;
 }
 int main()

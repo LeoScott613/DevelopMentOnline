@@ -3,17 +3,19 @@
 #include <cctype>
 #include "lhx.h"
 using namespace std;
-void reduce_blank(char tpa[], char ans[]);
+void reduce_blank(char[], char[]);
 int main()
 {
     char linet[100], line[100];
     cin.getline(linet, 100);
-    //reduce_blank(linet, line);
+    reduce_blank(linet, line);
     int i(0);
+    // cout<<line<<endl;
     for (; isdigit(line[i]); i++)
         ;
+    //cout << i << endl;
     line[i] = tolower(line[i]);
-    if (line[i] != '+' || line[i] != '-' || line[i] != '*' || line[i] != '/' || line[i] != 'x')
+    if (line[i] != '+' && line[i] != '-' && line[i] != '*' && line[i] != '/' && line[i] != 'x')
     {
         cout << "Wrongly input!" << endl;
         return -1;

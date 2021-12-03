@@ -2,16 +2,7 @@
 #include <cstring>
 #include "lhx.h"
 using namespace std;
-void reduce_blank(char tpa[], char ans[])
-{
-    for (int i(0), j(0); i < 100; i++)
-        if (tpa[i] != ' ')
-        {
-            ans[j] = tpa[i];
-            j++;
-        }
-    return;
-}
+void reduce_blank(char[], char[]);
 
 void (*rb)(char[], char[]) = reduce_blank;
 int main()
