@@ -1,3 +1,4 @@
+# Struct
 ```cpp
 struct person
 {

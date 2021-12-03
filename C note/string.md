@@ -54,7 +54,7 @@ ss >> a;
 ---
 ## 附加putchar()和getchar()
 *其实就是输出一个字符和读入一个字符orz*  
-**PS**:数字1与字符1之间的ASCII距离是48
+**PS**:数字1与字符1之间的ASCII距离是48( *即一个'0'* )
 ```cpp
 char c;
 c = getchar();
