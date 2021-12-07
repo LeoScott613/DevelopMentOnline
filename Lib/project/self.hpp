@@ -2,16 +2,19 @@
 #include <string>
 #include <iostream>
 using namespace std;
-class proj
+namespace lhx
 {
-public:
-    std::string name;
+    class proj
+    {
+    public:
+        std::string name;
 
-private:
-    void dis();
-};
+    private:
+        void dis();
+    };
 
-void proj::dis()
-{
-    cout<<"HelloProject!"<<endl;
-}
+    void proj::dis()
+    {
+        cout << "HelloProject!" << endl;
+    }
+}//namespace lhx

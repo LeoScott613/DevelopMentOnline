@@ -2,17 +2,17 @@
 //#include <iostream>
 #include <vector>
 using namespace std;
-proj inpu()
+lhx::proj inpu()
 {
-    proj inp;
+    lhx::proj inp;
     cin>>inp.name;
     return inp;
 }
 int main()
 {
-    vector<proj> lhx;
-    lhx.push_back(inpu());
-    vector<proj>::iterator ilhx=lhx.begin();
-    std::cout<<(*ilhx).name<<std::endl;
+    vector<lhx::proj> lh;
+    lh.push_back(inpu());
+    vector<lhx::proj>::iterator ilh=lh.begin();
+    std::cout<<(*ilh).name<<std::endl;
     return 0;
 }
