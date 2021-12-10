@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     for (i = 1; i < argc; i++)
     {
         memset(min,'\255',sizeof(min));
+        puts(min);
         // puts("okfor");
         for (j = i; j < argc; j++)
             if (strcmp(argv[j], min) < 0)
@@ -18,10 +19,13 @@ int main(int argc, char *argv[])
                 strcpy(min, argv[j]);
                 // puts(min);
             }
+        puts(min);
         tempo[i] = min;
     }
     // puts("ok2");
+    /*
     for (i = 1; i < argc; i++)
         puts(tempo[i]);
+    */
     return 0;
 }
