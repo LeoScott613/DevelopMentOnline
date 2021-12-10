@@ -2,22 +2,26 @@
 #include <string.h>
 int main(int argc, char *argv[])
 {
-    char *tempo[100], min[100];
+    char *tempo[100], min[100],*t;
     strcpy(min, argv[1]);
     int i, j;
     for (i = 1; i < argc; i++)
     {
-        memset(min,'\255',sizeof(min));
+        strcpy(min,argv[i]);
+        int p=i;
         for (j = i; j < argc; j++)
             if (strcmp(argv[j], min) < 0)
             {
-                strcpy(min, argv[j]);
+               p=j; 
             }
-        tempo[i] = min;
+        t=argv[i];
+        argv[i]=argv[p];
+        argv[p]=t;
+        //tempo[i] = min;
     }
     
     for (i = 1; i < argc; i++)
-        puts(tempo[i]);
+        puts(argv[i]);
     
     return 0;
 }
