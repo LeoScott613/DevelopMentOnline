@@ -13,15 +13,6 @@ public:
     std::string username;
     std::string password;
 };
-/*
-inline std::string user::encoding(std::string passw)//inline function works differently
-{
-    sti ipass(passw.begin());
-    for (; ipass != passw.end(); ipass++)
-        *ipass -= 3;
-    return passw;
-}   //Problem:Multiple definition
-*/
 extern int fileop(bool, user);
 #endif
 //ifndef is C/C++
