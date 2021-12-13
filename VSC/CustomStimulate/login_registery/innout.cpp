@@ -12,7 +12,9 @@ extern int fileop(bool inorout, user data)
     // true for in(register), false for out(login)
     ofstream regista;
     regista.open("ku.dat",ios::app);//But what is ios::ate?
-    regista<<data.username<<endl<<data.password<<endl<<'-'<<endl;
+    string userna(user::encoding(data.username));
+    string paswor(user::encoding(data.password));
+    regista<<userna<<endl<<paswor<<endl<<'-'<<endl;
     regista.close();
     return 0;
 }
