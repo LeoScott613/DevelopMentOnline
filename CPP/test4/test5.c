@@ -10,12 +10,12 @@ int main()
         free(p);
         p = (char *)malloc(100);
         gets(p);
-        printf("p is:%s//strcmp=%d\n", p, strcmp(p, ""));
         if (strcmp(p, ""))
             strcat(str, p);
     } while (strcmp(p, ""));
-    puts(str);
-    printf("%s", str);
+    free(p);
+    p=NULL;
+    printf("catenrated: %s", str);
     //putchar(str[2]);
     return 0;
 }
