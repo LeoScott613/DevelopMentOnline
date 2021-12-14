@@ -13,7 +13,8 @@ int main(int argc,char* argv[])
     //FillConsoleOutputCharacter(hando,'?',30,pos,NULL);
     SetConsoleTextAttribute(hando,BACKGROUND_BLUE);
     puts("ok!");
-    FillConsoleOutputCharacter(hando,'?',10,pos,NULL);
+    DWORD length=10;
+    FillConsoleOutputCharacter(hando,'?',length,pos,NULL);
     Sleep(5000);
     
 

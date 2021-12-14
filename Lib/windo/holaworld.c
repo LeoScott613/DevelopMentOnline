@@ -25,6 +25,7 @@ int main()
     scroll.Right = 10;
     scroll.Bottom = 2;
     ScrollConsoleScreenBuffer(handle_out, &scroll, NULL, pos, &chFill); //移动文本
-    Sleep(5000);
+    //Sleep(5000);
+    getch();
     return 0;
 }
