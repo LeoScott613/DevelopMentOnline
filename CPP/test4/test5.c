@@ -10,6 +10,7 @@ int main()
         free(p);
         p = (char *)malloc(100);
         gets(p);
+<<<<<<< HEAD
         if (strcmp(p, ""))
             strcat(str, p);
     } while (strcmp(p, ""));
@@ -17,5 +18,13 @@ int main()
     p=NULL;
     printf("catenrated: %s", str);
     //putchar(str[2]);
+=======
+        //printf("p is:%s\n", p);
+        if (strcmp(p, ""))
+            strcat(str, p);
+    } while (strcmp(p, ""));
+    puts(str);
+    printf("%s", str);
+>>>>>>> f07fca4b7ae8d7c06ec31f14774a773882238e63
     return 0;
 }
