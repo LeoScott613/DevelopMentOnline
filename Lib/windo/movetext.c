@@ -6,6 +6,7 @@ int main(int argc, char *argv[])
     HANDLE hando = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(hando,&csbi);
+    printf("cursor x:%d, y:%d \n",csbi.dwSize.X,csbi.dwSize.Y);
     SMALL_RECT smar = {1, 1, 1, 2};
     CHAR_INFO chfill;
     chfill.Char.AsciiChar=' ';
