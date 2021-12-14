@@ -21,9 +21,9 @@ int main()
     printf("33333333333333333333333333333\n");
     //确定区域
     scroll.Left = 1;
-    scroll.Top = 1;
+    scroll.Top = 1+1;
     scroll.Right = 10;
-    scroll.Bottom = 2;
+    scroll.Bottom = 3;
     ScrollConsoleScreenBuffer(handle_out, &scroll, NULL, pos, &chFill); //移动文本
     //Sleep(5000);
     getch();

@@ -16,4 +16,4 @@ CHAR_INFO
 STD_OUTPUT_HANDLE
 
 显示缓冲相关知识参考另一个笔记  
-获取显示缓冲信息GetConsoleScreenBufferInfo(*handle*,*CONSOLE_SCREEN_BUFFER_INFOR*),并将信息存储在了结构体类型CONSOLE_SCREEN_BUFFER_INFO定义的变量中
+获取显示缓冲信息GetConsoleScreenBufferInfo(*handle*,*\*CONSOLE_SCREEN_BUFFER_INFOR*),并将信息存储在了结构体类型CONSOLE_SCREEN_BUFFER_INFO定义的变量中
