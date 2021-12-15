@@ -11,7 +11,7 @@ void init_draw(HANDLE hand) // initial draw
     attrib = csbi.wAttributes;
     SetConsoleTextAttribute(hand, attrib);
     int i = 1;
-    const int sche_bot = 20; // the lowest
+    const int sche_bot = 24; // the lowest
     for (i = 1; i < sche_bot; i++)
         printf("|           |\n");
     // attrib = FOREGROUND_BLUE;
@@ -31,9 +31,9 @@ void init_draw(HANDLE hand) // initial draw
     SetConsoleCursorPosition(hand, curpos);
     printf("代办");
     //-------------------
-    // draw welcoming
+    // draw copyright
     char line[] = "|                                   |";
-    char wel_line[] = "|日程管理@Leo                       |";
+    char wel_line[] = "|日程管理                           |";
     curpos.X = 15;
     curpos.Y = 0;
     // attrib = FOREGROUND_BLUE;
@@ -45,7 +45,7 @@ void init_draw(HANDLE hand) // initial draw
     attrib = csbi.wAttributes;
     SetConsoleTextAttribute(hand, attrib);
     SetConsoleCursorPosition(hand, curpos);
-    for (i = 1; i < sche_bot / 3; i++)
+    for (i = 1; i < sche_bot / 4; i++)
     {
         if (curpos.Y == 2)
             printf("%s", wel_line);
@@ -71,5 +71,28 @@ void init_draw(HANDLE hand) // initial draw
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
     printf("December");
+
+    //curpos.X-=7;
+    //curpos.Y+=2;
+    //x=22,y=11
+    month_pos.X=20;
+    month_pos.Y=11;
+    SetConsoleCursorPosition(hand,month_pos);
+    printf("Mon Tue Wed Thu Fri Sat Sun");
+    curpos.X=month_pos.X+9,curpos.Y=month_pos.Y+1;
+    SetConsoleCursorPosition(hand,curpos);
+    for(i=1;i<=31;i++)
+    {
+        printf("%d",i);
+        if(curpos.X==month_pos.X+25)
+        {
+            curpos.X=month_pos.X+1;
+            curpos.Y+=2;
+        }
+        else
+            curpos.X+=4;
+        SetConsoleCursorPosition(hand,curpos);
+    }
     //----------
+   
 }
