@@ -14,28 +14,33 @@ void init_draw(HANDLE hand) // initial draw
     const int sche_bot = 20; // the lowest
     for (i = 1; i < sche_bot; i++)
         printf("|           |\n");
-    attrib = FOREGROUND_BLUE;
+    // attrib = FOREGROUND_BLUE;
     SetConsoleTextAttribute(hand, attrib);
     printf("-------------\n");
     COORD curpos;
     // draw schedule list
-    curpos.X = curpos.Y = 0;
+    curpos.X = 0;
+    curpos.Y = 0;
     SetConsoleCursorPosition(hand, curpos);
     attrib = csbi.wAttributes;
     SetConsoleTextAttribute(hand, attrib);
-    printf("|ToDo List");
+    printf("-------------");
+
+    curpos.X = 1;
+    curpos.Y++;
+    SetConsoleCursorPosition(hand, curpos);
+    printf("代办");
     //-------------------
     // draw welcoming
     char line[] = "|                                   |";
-    char wel_line[] = "|Schedule Management@Leo            |";
-    curpos.X = 14;
+    char wel_line[] = "|日程管理@Leo                       |";
+    curpos.X = 15;
     curpos.Y = 0;
-    attrib = FOREGROUND_BLUE;
+    // attrib = FOREGROUND_BLUE;
     SetConsoleTextAttribute(hand, attrib);
     SetConsoleCursorPosition(hand, curpos);
     printf("-------------------------------------");
     curpos.Y++;
-
 
     attrib = csbi.wAttributes;
     SetConsoleTextAttribute(hand, attrib);
@@ -49,7 +54,7 @@ void init_draw(HANDLE hand) // initial draw
         curpos.Y++;
         SetConsoleCursorPosition(hand, curpos);
     }
-    attrib = FOREGROUND_BLUE;
+    // attrib = FOREGROUND_BLUE;
     SetConsoleTextAttribute(hand, attrib);
     for (i = 1; i <= strlen(line); i++)
         printf("-");
@@ -61,7 +66,7 @@ void init_draw(HANDLE hand) // initial draw
     SetConsoleCursorPosition(hand, curpos);
     for (i = 1; i <= strlen(line); i++)
         printf("-");
-    
+
     curpos.X += 14;
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);

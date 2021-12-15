@@ -19,7 +19,7 @@ STD_OUTPUT_HANDLE
 *显示缓冲相关知识参考另一个笔记*  
   
 **API**  
-SetTextAttribute(*HANDLE*,*WORD*); 设置文本属性用
+SetTextAttribute(*HANDLE*,*WORD*); 设置文本属性用  
 >文本属性:颜色  
 FOREGROUND_和BACKGROUND_前缀指的是字体色和背景色，不同颜色可以混合，颜色后缀有四种:_RED,_BLUE,_GREEN,_INTENSITY,混合不同颜色使用|操作符
-GetConsoleCursorInfo()
+SetConsoleCursorPosition(*HANDLE*,*COORD*);设置指针位置用（不是指鼠标）  
