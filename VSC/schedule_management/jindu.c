@@ -21,7 +21,7 @@ void jindu(HANDLE hamdle)
         SetConsoleTextAttribute(hamdle,jindutiao);
         printf(" ");
         jindu.X++;
-        Sleep(50);
+        Sleep(10);
     }
     SetConsoleTextAttribute(hamdle,defaul);
 }

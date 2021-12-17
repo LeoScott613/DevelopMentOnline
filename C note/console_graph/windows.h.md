@@ -1,25 +1,28 @@
 # Windows.h !  
-windows.hå†…å«è®¸å¤šwindowsç³»åˆ—å¤´æ–‡ä»¶ï¼Œæ¯”å¦‚wincon.hå’Œwindef.hç­‰å¾ˆå¤š
-å¥æŸ„ï¼Œåæ ‡ï¼Œwindows data typeï¼Œæ ‡å‡†è¾“å…¥è¾“å‡ºè®¾å¤‡    
-**ç±»åž‹**  
+windows.hÄÚº¬Ðí¶àwindowsÏµÁÐÍ·ÎÄ¼þ£¬±ÈÈçwincon.hºÍwindef.hµÈºÜ¶à
+¾ä±ú£¬×ø±ê£¬windows data type£¬±ê×¼ÊäÈëÊä³öÉè±¸    
+**ÀàÐÍ**  
 typedef unsigned short WORD  
 typedef DWORD  
 HANDLE  
 WORD
 
-**ç»“æž„ä½“ç±»åž‹**  
+**½á¹¹ÌåÀàÐÍ**  
 CONSOLE_SCREEN_BUFFER_INFO  
 COORD  
 SMALL_RECT  
 CHAR_INFO  
+INPUT_RECORD
 
-**å¥æŸ„ç±»åž‹**  
+**¾ä±úÀàÐÍ**  
 STD_OUTPUT_HANDLE  
-èŽ·å–æ˜¾ç¤ºç¼“å†²ä¿¡æ¯GetConsoleScreenBufferInfo(*handle*,*\*CONSOLE_SCREEN_BUFFER_INFOR*),å¹¶å°†ä¿¡æ¯å­˜å‚¨åœ¨äº†ç»“æž„ä½“ç±»åž‹CONSOLE_SCREEN_BUFFER_INFOå®šä¹‰çš„å˜é‡ä¸­  
-*æ˜¾ç¤ºç¼“å†²ç›¸å…³çŸ¥è¯†å‚è€ƒå¦ä¸€ä¸ªç¬”è®°*  
+»ñÈ¡ÏÔÊ¾»º³åÐÅÏ¢GetConsoleScreenBufferInfo(*handle*,*\*CONSOLE_SCREEN_BUFFER_INFOR*),²¢½«ÐÅÏ¢´æ´¢ÔÚÁË½á¹¹ÌåÀàÐÍCONSOLE_SCREEN_BUFFER_INFO¶¨ÒåµÄ±äÁ¿ÖÐ  
+*ÏÔÊ¾»º³åÏà¹ØÖªÊ¶²Î¿¼ÁíÒ»¸ö±Ê¼Ç*  
+STD_INPUT_HANDLE
   
-**API**  
-SetTextAttribute(*HANDLE*,*WORD*); è®¾ç½®æ–‡æœ¬å±žæ€§ç”¨  
->æ–‡æœ¬å±žæ€§:é¢œè‰²  
-FOREGROUND_å’ŒBACKGROUND_å‰ç¼€æŒ‡çš„æ˜¯å­—ä½“è‰²å’ŒèƒŒæ™¯è‰²ï¼Œä¸åŒé¢œè‰²å¯ä»¥æ··åˆï¼Œé¢œè‰²åŽç¼€æœ‰å››ç§:_RED,_BLUE,_GREEN,_INTENSITY,æ··åˆä¸åŒé¢œè‰²ä½¿ç”¨|æ“ä½œç¬¦
-SetConsoleCursorPosition(*HANDLE*,*COORD*);è®¾ç½®æŒ‡é’ˆä½ç½®ç”¨ï¼ˆä¸æ˜¯æŒ‡é¼ æ ‡ï¼‰  
+**API**   
+SetTextAttribute(*HANDLE*,*WORD*); ÉèÖÃÎÄ±¾ÊôÐÔÓÃ  
+>ÎÄ±¾ÊôÐÔ:ÑÕÉ«  
+FOREGROUND_ºÍBACKGROUND_Ç°×ºÖ¸µÄÊÇ×ÖÌåÉ«ºÍ±³¾°É«£¬²»Í¬ÑÕÉ«¿ÉÒÔ»ìºÏ£¬ÑÕÉ«ºó×ºÓÐËÄÖÖ:_RED,_BLUE,_GREEN,_INTENSITY,»ìºÏ²»Í¬ÑÕÉ«Ê¹ÓÃ|²Ù×÷·û
+SetConsoleCursorPosition(*HANDLE*,*COORD*);ÉèÖÃÖ¸ÕëÎ»ÖÃÓÃ£¨²»ÊÇÖ¸Êó±ê£©  
+ReadConsoleInput(*HANDLE*,*INPUT_RECORD*,*DWORD*,*LPDWORD*);¶ÁÈ¡¼üÅÌÊÂ¼þ

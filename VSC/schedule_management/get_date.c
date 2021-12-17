@@ -12,6 +12,6 @@ void getdate(HANDLE hand)
     time_pos.X = 29;
     time_pos.Y = 2;
     SetConsoleCursorPosition(hand, time_pos);
-    printf("%s  %s",date,nowtime);
+    printf("%s  %s ",date,nowtime);
     fclose(p);
 }

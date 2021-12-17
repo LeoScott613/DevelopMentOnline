@@ -19,7 +19,13 @@ COORD time_pos;
 void init_draw(HANDLE);
 void getdate(HANDLE);
 void hide_cursor(HANDLE);
+void show_cursor();
 void jindu(HANDLE);
+void kbevent(HANDLE);
+void resetpro(COORD);
+void processor(COORD);//the first time I try not passing the handle..
+void newevent(COORD);
+void lhxResetEvent();
 static const char *welcome="         ___     ___    ___    __                              ___     ___    ___    ___  \n        |__ \\   / _ \\  |__ \\  /_ |                            |__ \\   / _ \\  |__ \\  |__ \\ \n           ) | | | | |    ) |  | |  ______   ______   ______     ) | | | | |    ) |    ) |\n          / /  | | | |   / /   | | |______| |______| |______|   / /  | | | |   / /    / / \n         / /_  | |_| |  / /_   | |                             / /_  | |_| |  / /_   / /_ \n        |____|  \\___/  |____|  |_|                            |____|  \\___/  |____| |____|\n";
 
 long int runtime;

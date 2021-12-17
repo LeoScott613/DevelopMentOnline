@@ -5,6 +5,14 @@ void hide_cursor(HANDLE hand) // hide cursor
     cci.dwSize = 1;
     SetConsoleCursorInfo(hand, &cci);
 }
+void show_cursor() // show cursor
+{
+    HANDLE hand=GetStdHandle(STD_OUTPUT_HANDLE);
+    cci.bVisible = 1;
+    cci.dwSize = 1;
+    SetConsoleCursorInfo(hand, &cci);
+    CloseHandle(hand);
+}
 void init_draw(HANDLE hand) // initial draw
 {
     WORD attrib;
@@ -72,27 +80,23 @@ void init_draw(HANDLE hand) // initial draw
     SetConsoleCursorPosition(hand, curpos);
     printf("December");
 
-    //curpos.X-=7;
-    //curpos.Y+=2;
-    //x=22,y=11
-    month_pos.X=20;
-    month_pos.Y=11;
-    SetConsoleCursorPosition(hand,month_pos);
+    month_pos.X = 20; // definition of month_pos
+    month_pos.Y = 11; // definition of month_pos
+    SetConsoleCursorPosition(hand, month_pos);
     printf("Mon Tue Wed Thu Fri Sat Sun");
-    curpos.X=month_pos.X+9,curpos.Y=month_pos.Y+1;
-    SetConsoleCursorPosition(hand,curpos);
-    for(i=1;i<=31;i++)
+    curpos.X = month_pos.X + 9, curpos.Y = month_pos.Y + 1; // the position of '1'
+    SetConsoleCursorPosition(hand, curpos);
+    for (i = 1; i <= 31; i++)
     {
-        printf("%d",i);
-        if(curpos.X==month_pos.X+25)
+        printf("%2d", i);
+        if (curpos.X == month_pos.X + 25)
         {
-            curpos.X=month_pos.X+1;
-            curpos.Y+=2;
+            curpos.X = month_pos.X + 1;
+            curpos.Y += 2;
         }
         else
-            curpos.X+=4;
-        SetConsoleCursorPosition(hand,curpos);
+            curpos.X += 4;
+        SetConsoleCursorPosition(hand, curpos);
     }
     //----------
-   
 }
