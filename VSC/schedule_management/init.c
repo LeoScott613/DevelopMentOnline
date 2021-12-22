@@ -7,11 +7,10 @@ void hide_cursor(HANDLE hand) // hide cursor
 }
 void show_cursor() // show cursor
 {
-    HANDLE hand=GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hand = GetStdHandle(STD_OUTPUT_HANDLE);
     cci.bVisible = 1;
     cci.dwSize = 1;
     SetConsoleCursorInfo(hand, &cci);
-    CloseHandle(hand);
 }
 void init_draw(HANDLE hand) // initial draw
 {
@@ -38,6 +37,22 @@ void init_draw(HANDLE hand) // initial draw
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
     printf("´ú°ì");
+
+    /*
+        FILE *ctin;
+        ctin=fopen("data.t","r");
+        int day,hour,minute;
+        while(ctin->_flag!=EOF)
+        {
+            char *content;
+            fprintf(ctin,"%03d.%02d:%02d%%%s", day, hour, minute,content);
+            curpos.Y++;
+            curpos.X=1;
+            SetConsoleCursorPosition(hand,curpos);
+            printf("%03d.%02d:%02d%%%s",day,hour,minute,content);
+        }
+    */
+   
     //-------------------
     // draw copyright
     char line[] = "|                                   |";

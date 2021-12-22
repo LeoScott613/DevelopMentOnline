@@ -20,6 +20,7 @@ STD_OUTPUT_HANDLE
 *显示缓冲相关知识参考另一个笔记*  
 STD_INPUT_HANDLE
   
+句柄在子函数里的关闭会导致整个工程的句柄都被关闭
 **API**   
 SetTextAttribute(*HANDLE*,*WORD*); 设置文本属性用  
 >文本属性:颜色  

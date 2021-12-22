@@ -84,7 +84,24 @@ void processor(COORD tar) // a drawing unit corresponding to kbevent
     printf("%2d", i);
 
     SetConsoleTextAttribute(hando, csbi.wAttributes); // reset text attribute, necessary
-    CloseHandle(hando);
+
+    FILE *readcontent;
+    readcontent = fopen("data.t", "r");
+    tar.X = 1;
+    tar.Y = 2;
+    while (!feof(readcontent))
+    {
+        int day = -1, hour = 0, min = 0;
+        char *content;
+        SetConsoleCursorPosition(hando, tar);
+        fscanf(readcontent, "%03d.%02d:%02d:\"%s\"", &day, &hour, &min, &content);
+        if (day == i)
+        {
+            printf("%02d:%02d\"%s", hour, min, &content);
+            tar.Y++;
+            tar.X = 1;
+        }
+    }
 }
 
 void resetpro(COORD tar)
@@ -116,15 +133,29 @@ void resetpro(COORD tar)
         i--;
     }
     SetConsoleCursorPosition(hando, tar);
-    printf("%2d", i);
-    CloseHandle(hando);
+    printf("%2d", i); // reset number intensity
+
+    // reset list
+    tar.X = 1;
+    tar.Y = 2;
+    int j = 1;
+    char *newline = "           |";
+    for (; j < 20; j++)
+    {
+        SetConsoleCursorPosition(hando, tar);
+        printf("%s", newline);
+        tar.Y += 1;
+        tar.X = 1;
+    }
 }
 void newevent(COORD tar)
 {
-    int i = 1, h=0, min=0;
+    int i = 1, h = 0, min = 0;
     char content[50];
     HANDLE hando;
     COORD curpos;
+    FILE *content_out;
+    content_out = fopen("data.t", "a");
 
     while (tar.X != month_pos.X + 9 || tar.Y != month_pos.Y + 1) // for finding the i
     {
@@ -137,7 +168,7 @@ void newevent(COORD tar)
             tar.X -= 4;
         i++;
     }
-    if (i > 31)//in order not to break the endline
+    if (i > 31) // in order not to break the endline
         return;
     hando = GetStdHandle(STD_OUTPUT_HANDLE);
     curpos.X = 60;
@@ -155,14 +186,14 @@ void newevent(COORD tar)
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Content:");
-    scanf("%s", content);
+    scanf("%s", &content);
+
+    fprintf(content_out, "%03d.%02d:%02d:\"%s\"\n", i, h, min, &content);
 
     curpos.Y = 3; // not really, should read file
     curpos.X = 1;
-    SetConsoleCursorPosition(hando, curpos);
-    printf("%d.%02d:%02d", i, h, min);
 
-    CloseHandle(hando);
+    fclose(content_out);
 }
 void lhxResetEvent() // conflicting name
 {
@@ -177,10 +208,8 @@ void lhxResetEvent() // conflicting name
     curpos.Y += 2;*/
     hide_cursor(hando);
     SetConsoleCursorPosition(hando, curpos);
-    printf("%s", newline);
+    printf("%s", &newline);
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
-    printf("%s", newline);
-
-    CloseHandle(hando);
+    printf("%s", &newline);
 }
