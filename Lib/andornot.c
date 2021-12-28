@@ -1,7 +1,8 @@
 #include <stdio.h>
 int main()
 {
-    int x=1,y=1,z=0;
-    printf("%d",(!x<=z>=y||!x&&3<4));
+    int a[3][4] = {{9, 0}, {8, 2}, {1}};
+    int (*p)[3];
+    p=a;
     return 0;
 }
