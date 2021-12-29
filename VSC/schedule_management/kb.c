@@ -42,7 +42,7 @@ void kbevent(HANDLE hand) // it needs a std input handle
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == 'N' && inre.Event.KeyEvent.bKeyDown) // month::new
     {
         newevent(target);
-        lhxResetEvent();
+        //lhxResetEvent();
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE && inre.Event.KeyEvent.bKeyDown) // month::exit
     {
@@ -87,8 +87,9 @@ void processor(COORD tar) // a drawing unit corresponding to kbevent
 
     FILE *readcontent;
     readcontent = fopen("data.t", "r");
-    tar.X = 1;
-    tar.Y = 2;
+    //the position of »’≥Ã drawing
+    tar.X = 60;
+    tar.Y = 0;
     while (!feof(readcontent))
     {
         int day = -1, hour = 0, min = 0;
@@ -99,11 +100,10 @@ void processor(COORD tar) // a drawing unit corresponding to kbevent
         {
             printf("%02d:%02d\"%s", hour, min, &content);
             tar.Y++;
-            tar.X = 1;
+            tar.X = 60;
         }
     }
 }
-
 void resetpro(COORD tar)
 {
     CONSOLE_CURSOR_INFO tempcci;
@@ -136,20 +136,21 @@ void resetpro(COORD tar)
     printf("%2d", i); // reset number intensity
 
     // reset list
-    tar.X = 1;
-    tar.Y = 2;
+    tar.X = 60;
+    tar.Y = 0;
     int j = 1;
-    char *newline = "           |";
-    for (; j < 20; j++)
+    char *newline = "                                                ";
+    for (; j < 30; j++)
     {
         SetConsoleCursorPosition(hando, tar);
         printf("%s", newline);
         tar.Y += 1;
-        tar.X = 1;
+        tar.X = 60;
     }
 }
 void newevent(COORD tar)
 {
+    
     int i = 1, h = 0, min = 0;
     char content[50];
     HANDLE hando;
@@ -171,14 +172,23 @@ void newevent(COORD tar)
     if (i > 31) // in order not to break the endline
         return;
     hando = GetStdHandle(STD_OUTPUT_HANDLE);
+    
+    //clear list drawing
     curpos.X = 60;
     curpos.Y = 0;
-    /*SetConsoleCursorPosition(hando, curpos);
-    printf("Day:");
-    scanf("%d", &i);
+    int j = 1;
+    char *newline = "                                                ";
+    for (; j < 30; j++)
+    {
+        SetConsoleCursorPosition(hando, curpos);
+        printf("%s", newline);
+        curpos.Y += 1;
+        curpos.X = 60;
+    }
 
-    curpos.Y += 2;*/
-    show_cursor();
+    curpos.X = 60;
+    curpos.Y = 0;
+    show_cursor();//show the cursor in order to indicate the position to the user
     SetConsoleCursorPosition(hando, curpos);
     printf("Time(hous:minute):");
     scanf("%d:%d", &h, &min);
@@ -189,23 +199,29 @@ void newevent(COORD tar)
     scanf("%s", &content);
 
     fprintf(content_out, "%03d.%02d:%02d:\"%s\"\n", i, h, min, &content);
-
-    curpos.Y = 3; // not really, should read file
-    curpos.X = 1;
-
     fclose(content_out);
+
+    //clear list drawing
+    curpos.X = 60;
+    curpos.Y = 0;
+    for (j = 1; j < 30; j++)
+    {
+        SetConsoleCursorPosition(hando, curpos);
+        printf("%s", newline);
+        curpos.Y += 1;
+        curpos.X = 60;
+    }
+    hide_cursor(hando);//re-hide the cursor
 }
+/* Due to the principle of being precise, I disable this function on 29th Dec.
 void lhxResetEvent() // conflicting name
-{
+{//clear drawing after new an event
     HANDLE hando;
     COORD curpos;
     char *newline = "                                                            ";
     hando = GetStdHandle(STD_OUTPUT_HANDLE);
     curpos.X = 60;
     curpos.Y = 0;
-    /*SetConsoleCursorPosition(hando, curpos);
-    printf("    ");
-    curpos.Y += 2;*/
     hide_cursor(hando);
     SetConsoleCursorPosition(hando, curpos);
     printf("%s", &newline);
@@ -213,3 +229,4 @@ void lhxResetEvent() // conflicting name
     SetConsoleCursorPosition(hando, curpos);
     printf("%s", &newline);
 }
+*/

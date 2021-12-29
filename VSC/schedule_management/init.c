@@ -36,7 +36,7 @@ void init_draw(HANDLE hand) // initial draw
     curpos.X = 1;
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
-    printf("代办");
+    printf("手册\n|m选择日期\n|选择后n新建\n|esc返回");
 
     /*
         FILE *ctin;
