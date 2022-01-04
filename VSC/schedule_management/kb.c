@@ -136,13 +136,13 @@ void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a
         i++;
     }
     
-    if (i > 31) // not to break the end of the month
+    if (i > 31) 
     //右键超界之后的操作放在这个分支里了
     {
-        *currentmonth++;
+        (*currentmonth)++;//千万注意后自增运算符的优先级最高，最好能记得所有运算符的运算次序
         if (*currentmonth == 13)
         {
-            *currentyear++;
+            (*currentyear)++;
             *currentmonth = 1;
         }
         int ii;
