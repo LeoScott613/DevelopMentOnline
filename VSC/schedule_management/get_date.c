@@ -7,6 +7,7 @@ void getdate(HANDLE hand)
     char date[20],nowtime[20];
     fscanf(p,"%s",date);//read date from file
     system("time /t>date");
+    fclose(p);
     p=fopen("date","r");
     fscanf(p,"%s",nowtime);//read time from file
     time_pos.X = 29;
