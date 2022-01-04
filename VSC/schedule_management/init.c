@@ -91,6 +91,8 @@ void init_draw(HANDLE hand) // initial draw
     curpos.X += 14;
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
+    /*printf("%d,%d",curpos.X,curpos.Y);
+    system("pause");*/
     system("date /t>date");
     FILE *p;
     p = fopen("date", "r");
@@ -131,18 +133,18 @@ COORD current_month(int year, int month) // calculate the position of the 1st of
     cr.X = 20 + 9;
     cr.Y = 11 + 1; // start of Dec 1st,2021
     int dism = 0;
+    int ty = year, tm = month;
     while (year > 2021)
     {
-        int ty = year, tm = month;
         dism++, tm--;
         if (tm == 0)
             tm = 12, ty--;
         if (tm == 12 && ty == 2021)
             break;
     }
-    while (year < 2021 || (year == 2021 && month < 12))
+    ty = year, tm = month;
+    while (year < 2021 || (year == 2021 && tm < 12))
     {
-        int ty = year, tm = month;
         dism--, tm++;
         if (tm == 13 && ty != 2021)
         {
@@ -158,6 +160,11 @@ COORD current_month(int year, int month) // calculate the position of the 1st of
     if (dism < 0) // when current month is before Dec 2021
         while (dism)
         {
+            dism++;
+            if (pml == monthlength)
+                pml = monthlength + 11;
+            else
+                pml--;
             if (*pml == 31)
             {
                 int i = 0;
@@ -182,12 +189,6 @@ COORD current_month(int year, int month) // calculate the position of the 1st of
             }
             else if (*pml == 28)
                 ;
-
-            dism++;
-            if (pml == monthlength)
-                pml = monthlength + 11;
-            else
-                pml--;
         }
     else if (dism > 0) // when current month is after Dec 2021
         while (dism)

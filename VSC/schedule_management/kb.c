@@ -2,7 +2,7 @@
 void kbevent(HANDLE hand) // it needs a std input handle
 {
     INPUT_RECORD inre;
-    HANDLE hin = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD back;          //用来接受成功读取记录数
     static COORD target; // used to transmit the coordinate to processor()
     static int entermlist = 0;
@@ -59,6 +59,7 @@ void kbevent(HANDLE hand) // it needs a std input handle
             target.Y++;
             for (i = 1; i <= 60; i++)
             {
+                SetConsoleCursorPosition(hout, target);
                 // printf("%2d", i);
                 printf("  "); //清除专用
                 if (target.X == month_pos.X + 25)
@@ -68,12 +69,18 @@ void kbevent(HANDLE hand) // it needs a std input handle
                 }
                 else
                     target.X += 4;
-                SetConsoleCursorPosition(hin, target);
             }
+            //然后画出月份
+            target.X = 29;
+            target.Y = 9;
+            SetConsoleCursorPosition(hout, target);
+            printf("           ");
+            SetConsoleCursorPosition(hout, target);
+            printf("%d年%d月", currentyear, currentmonth);
 
+            //开始画日期
             target = current_month(currentyear, currentmonth);
-            SetConsoleCursorPosition(hin, target);
-
+            SetConsoleCursorPosition(hout, target);
             int monthlength[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, *pml = monthlength + currentmonth - 1;
             for (i = 1; i <= *pml; i++)
             {
@@ -85,8 +92,16 @@ void kbevent(HANDLE hand) // it needs a std input handle
                 }
                 else
                     target.X += 4;
-                SetConsoleCursorPosition(hin, target);
+                SetConsoleCursorPosition(hout, target);
             }
+            if (target.X == month_pos.X + 1) //最后一次绘制日期时target会向后移，所以要移回来
+            {
+                target.X = month_pos.X + 25;
+                target.Y -= 2;
+            }
+            else
+                target.X -= 4;
+            SetConsoleCursorPosition(hout, target);
         }
         processor(target, &target, currentyear, currentmonth);
     }
@@ -154,6 +169,7 @@ void processor(COORD tar, COORD *ptar, int currentyear, int currentmonth) // a d
             tar.X = 60;
         }
     }
+    fclose(readcontent);//使用完文件指针一定要关闭
 }
 void resetpro(COORD tar, COORD *ptar, int currentyear, int currentmonth)
 {

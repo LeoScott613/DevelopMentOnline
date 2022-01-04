@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
     while (1)
     {
         //keyboard event
-        Sleep(10);
-        getdate(hando);
+        Sleep(30);
+        //getdate(hando);
         kbevent(handin);
     }
     CloseHandle(hando);
