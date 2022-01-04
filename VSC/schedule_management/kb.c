@@ -2,22 +2,24 @@
 void kbevent(HANDLE hand) // it needs a std input handle
 {
     INPUT_RECORD inre;
+    HANDLE hin = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD back;          //用来接受成功读取记录数
     static COORD target; // used to transmit the coordinate to processor()
     static int entermlist = 0;
     ReadConsoleInput(hand, &inre, 1, &back);
+    static int currentmonth = 1, currentyear = 2022;
+    COORD start_of_current_month = current_month(currentyear, currentmonth);
     // if(inre.EventType==KEY_EVENT)
     // printf("great");
     if (inre.Event.KeyEvent.wVirtualKeyCode == 'M' && inre.Event.KeyEvent.bKeyDown) // month::enter
     {
-        target.X = month_pos.X + 9;
-        target.Y = month_pos.Y + 1;
-        processor(target);
+        target = current_month(currentyear, currentmonth);
+        processor(target, &target, currentyear, currentmonth);
         entermlist = 1;
     }
     if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT && inre.Event.KeyEvent.bKeyDown) // month::right
     {
-        resetpro(target);
+        resetpro(target, &target, currentyear, currentmonth);
         if (target.X == month_pos.X + 25)
         {
             target.X = month_pos.X + 1;
@@ -25,38 +27,88 @@ void kbevent(HANDLE hand) // it needs a std input handle
         }
         else
             target.X += 4;
-        processor(target);
+        processor(target, &target, currentyear, currentmonth);
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_LEFT && inre.Event.KeyEvent.bKeyDown) // month::left
     {
-        resetpro(target);
-        if (target.X == month_pos.X + 1)
+        resetpro(target, &target, currentyear, currentmonth);
+        if (target.X != start_of_current_month.X || target.Y != start_of_current_month.Y)
         {
-            target.X = month_pos.X + 25;
-            target.Y -= 2;
+            if (target.X == month_pos.X + 1)
+            {
+                target.X = month_pos.X + 25;
+                target.Y -= 2;
+            }
+            else
+                target.X -= 4;
         }
-        else
-            target.X -= 4;
-        processor(target);
+        else //再按一次左键就会超界的情况
+        {
+            currentmonth--;
+            int i;
+
+            if (currentmonth == 0)
+            {
+                currentmonth = 12;
+                currentyear--;
+            }
+
+            // 先把画出来的日期清除
+            target = month_pos;
+            target.X++;
+            target.Y++;
+            for (i = 1; i <= 60; i++)
+            {
+                // printf("%2d", i);
+                printf("  "); //清除专用
+                if (target.X == month_pos.X + 25)
+                {
+                    target.X = month_pos.X + 1;
+                    target.Y += 2;
+                }
+                else
+                    target.X += 4;
+                SetConsoleCursorPosition(hin, target);
+            }
+
+            target = current_month(currentyear, currentmonth);
+            SetConsoleCursorPosition(hin, target);
+
+            int monthlength[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, *pml = monthlength + currentmonth - 1;
+            for (i = 1; i <= *pml; i++)
+            {
+                printf("%2d", i);
+                if (target.X == month_pos.X + 25)
+                {
+                    target.X = month_pos.X + 1;
+                    target.Y += 2;
+                }
+                else
+                    target.X += 4;
+                SetConsoleCursorPosition(hin, target);
+            }
+        }
+        processor(target, &target, currentyear, currentmonth);
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == 'N' && inre.Event.KeyEvent.bKeyDown) // month::new
     {
-        newevent(target);
-        //lhxResetEvent();
+        newevent(target, currentyear, currentmonth);
+        // lhxResetEvent();
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE && inre.Event.KeyEvent.bKeyDown) // month::exit
     {
-        resetpro(target);
+        resetpro(target, &target, currentyear, currentmonth);
         entermlist = 0;
     }
 }
-void processor(COORD tar) // a drawing unit corresponding to kbevent
+void processor(COORD tar, COORD *ptar, int currentyear, int currentmonth) // a drawing unit corresponding to kbevent
 {
     HANDLE hando = GetStdHandle(STD_OUTPUT_HANDLE);
     WORD attrib;
     int i = 1;
     COORD distance = tar;
-    while (distance.X != month_pos.X + 9 || distance.Y != month_pos.Y + 1) // for finding the i
+    COORD start_of_current_month = current_month(currentyear, currentmonth);
+    while (distance.X != start_of_current_month.X || distance.Y != start_of_current_month.Y) // for finding the i
     {
         if (distance.X == month_pos.X + 1)
         {
@@ -67,17 +119,16 @@ void processor(COORD tar) // a drawing unit corresponding to kbevent
             distance.X -= 4;
         i++;
     }
-    while (i > 31) // not to break the end of the month
+
+    if (i > 31) // not to break the end of the month
+    //右键超界之后的操作放在这个分支里了
     {
-        if (tar.X == month_pos.X + 1)
-        {
-            tar.X = month_pos.X + 25;
-            tar.Y -= 2;
-        }
-        else
-            tar.X -= 4;
-        i--;
+        currentmonth++;
+        if (currentmonth == 13)
+            currentyear++, currentmonth = 1;
+        *ptar = current_month(currentyear, currentmonth);
     }
+
     SetConsoleCursorPosition(hando, tar);
     attrib = BACKGROUND_INTENSITY;
     SetConsoleTextAttribute(hando, attrib);
@@ -87,7 +138,7 @@ void processor(COORD tar) // a drawing unit corresponding to kbevent
 
     FILE *readcontent;
     readcontent = fopen("data.t", "r");
-    //the position of 日程 drawing
+    // the position of 日程 drawing
     tar.X = 60;
     tar.Y = 0;
     while (!feof(readcontent))
@@ -104,13 +155,14 @@ void processor(COORD tar) // a drawing unit corresponding to kbevent
         }
     }
 }
-void resetpro(COORD tar)
+void resetpro(COORD tar, COORD *ptar, int currentyear, int currentmonth)
 {
     CONSOLE_CURSOR_INFO tempcci;
     HANDLE hando = GetStdHandle(STD_OUTPUT_HANDLE);
     int i = 1;
     COORD distance = tar;
-    while (distance.X != month_pos.X + 9 || distance.Y != month_pos.Y + 1) // for finding the i
+    COORD start_of_current_month = current_month(currentyear, currentmonth);
+    while (distance.X != start_of_current_month.X || distance.Y != start_of_current_month.Y) // for finding the i
     {
         if (distance.X == month_pos.X + 1)
         {
@@ -121,17 +173,16 @@ void resetpro(COORD tar)
             distance.X -= 4;
         i++;
     }
-    while (i > 31) // not to break the end of the month
+
+    if (i > 31) // not to break the end of the month
+    //右键超界之后的操作放在这个分支里了
     {
-        if (tar.X == month_pos.X + 1)
-        {
-            tar.X = month_pos.X + 25;
-            tar.Y -= 2;
-        }
-        else
-            tar.X -= 4;
-        i--;
+        currentmonth++;
+        if (currentmonth == 13)
+            currentyear++, currentmonth = 1;
+        *ptar = current_month(currentyear, currentmonth);
     }
+
     SetConsoleCursorPosition(hando, tar);
     printf("%2d", i); // reset number intensity
 
@@ -148,17 +199,18 @@ void resetpro(COORD tar)
         tar.X = 60;
     }
 }
-void newevent(COORD tar)
+void newevent(COORD tar, int currentyear, int currentmonth)
 {
-    
+
     int i = 1, h = 0, min = 0;
     char content[50];
     HANDLE hando;
     COORD curpos;
     FILE *content_out;
     content_out = fopen("data.t", "a");
+    COORD start_of_current_month = current_month(currentyear, currentmonth);
 
-    while (tar.X != month_pos.X + 9 || tar.Y != month_pos.Y + 1) // for finding the i
+    while (tar.X != start_of_current_month.X || tar.Y != start_of_current_month.Y) // for finding the i
     {
         if (tar.X == month_pos.X + 1)
         {
@@ -172,8 +224,8 @@ void newevent(COORD tar)
     if (i > 31) // in order not to break the endline
         return;
     hando = GetStdHandle(STD_OUTPUT_HANDLE);
-    
-    //clear list drawing
+
+    // clear list drawing
     curpos.X = 60;
     curpos.Y = 0;
     int j = 1;
@@ -188,7 +240,7 @@ void newevent(COORD tar)
 
     curpos.X = 60;
     curpos.Y = 0;
-    show_cursor();//show the cursor in order to indicate the position to the user
+    show_cursor(); // show the cursor in order to indicate the position to the user
     SetConsoleCursorPosition(hando, curpos);
     printf("Time(hous:minute):");
     scanf("%d:%d", &h, &min);
@@ -201,7 +253,7 @@ void newevent(COORD tar)
     fprintf(content_out, "%03d.%02d:%02d:\"%s\"\n", i, h, min, &content);
     fclose(content_out);
 
-    //clear list drawing
+    // clear list drawing
     curpos.X = 60;
     curpos.Y = 0;
     for (j = 1; j < 30; j++)
@@ -211,7 +263,7 @@ void newevent(COORD tar)
         curpos.Y += 1;
         curpos.X = 60;
     }
-    hide_cursor(hando);//re-hide the cursor
+    hide_cursor(hando); // re-hide the cursor
 }
 /* Due to the principle of being precise, I disable this function on 29th Dec.
 void lhxResetEvent() // conflicting name

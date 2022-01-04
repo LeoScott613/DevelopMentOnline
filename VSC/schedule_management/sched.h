@@ -1,3 +1,4 @@
+// compile information:  gcc main.c jindu.c init.c get_date.c kb.c
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
@@ -22,12 +23,14 @@ void hide_cursor(HANDLE);
 void show_cursor();
 void jindu(HANDLE);
 void kbevent(HANDLE);
-void resetpro(COORD);
-void processor(COORD);//the first time I try not passing the handle..
-void newevent(COORD);
+void resetpro(COORD,COORD *,int,int);
+void processor(COORD,COORD *,int,int); // the first time I try not passing the handle..
+void newevent(COORD,int,int);
 void lhxResetEvent();
-static const char *welcome="         ___     ___    ___    __                              ___     ___    ___    ___  \n        |__ \\   / _ \\  |__ \\  /_ |                            |__ \\   / _ \\  |__ \\  |__ \\ \n           ) | | | | |    ) |  | |  ______   ______   ______     ) | | | | |    ) |    ) |\n          / /  | | | |   / /   | | |______| |______| |______|   / /  | | | |   / /    / / \n         / /_  | |_| |  / /_   | |                             / /_  | |_| |  / /_   / /_ \n        |____|  \\___/  |____|  |_|                            |____|  \\___/  |____| |____|\n";
+COORD current_month();
+static const char *welcome = "         ___     ___    ___    __                              ___     ___    ___    ___  \n        |__ \\   / _ \\  |__ \\  /_ |                            |__ \\   / _ \\  |__ \\  |__ \\ \n           ) | | | | |    ) |  | |  ______   ______   ______     ) | | | | |    ) |    ) |\n          / /  | | | |   / /   | | |______| |______| |______|   / /  | | | |   / /    / / \n         / /_  | |_| |  / /_   | |                             / /_  | |_| |  / /_   / /_ \n        |____|  \\___/  |____|  |_|                            |____|  \\___/  |____| |____|\n";
 
 long int runtime;
+
 #endif
 //" ____  ____  ____  _                    ____  ____  ____  ____ \n/_   \\/  _ \\/_   \\/ \\                  /_   \\/  _ \\/_   \\/_   \\ \n /   /| / \\| /   /| |_____ _____ _____  /   /| / \\| /   / /   /\n/   /_| \\_/|/   /_| |\\____\\____\\____\\/   /_| \\_/|/   /_/   /_\n\\____/\\____/\\____/\\_/                  \\____/\\____/\\____/\\____/";
