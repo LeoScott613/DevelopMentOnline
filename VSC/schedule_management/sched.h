@@ -23,8 +23,8 @@ void hide_cursor(HANDLE);
 void show_cursor();
 void jindu(HANDLE);
 void kbevent(HANDLE);
-void resetpro(COORD,COORD *,int,int);
-void processor(COORD,COORD *,int,int); // the first time I try not passing the handle..
+void resetpro(COORD,COORD *,int*,int*);
+void processor(COORD,COORD *,int*,int*); // the first time I try not passing the handle..
 void newevent(COORD,int,int);
 void lhxResetEvent();
 COORD current_month();

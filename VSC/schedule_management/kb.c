@@ -14,12 +14,12 @@ void kbevent(HANDLE hand) // it needs a std input handle
     if (inre.Event.KeyEvent.wVirtualKeyCode == 'M' && inre.Event.KeyEvent.bKeyDown) // month::enter
     {
         target = current_month(currentyear, currentmonth);
-        processor(target, &target, currentyear, currentmonth);
+        processor(target, &target, &currentyear, &currentmonth);
         entermlist = 1;
     }
     if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT && inre.Event.KeyEvent.bKeyDown) // month::right
     {
-        resetpro(target, &target, currentyear, currentmonth);
+        resetpro(target, &target, &currentyear, &currentmonth);
         if (target.X == month_pos.X + 25)
         {
             target.X = month_pos.X + 1;
@@ -27,11 +27,11 @@ void kbevent(HANDLE hand) // it needs a std input handle
         }
         else
             target.X += 4;
-        processor(target, &target, currentyear, currentmonth);
+        processor(target, &target, &currentyear, &currentmonth);
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_LEFT && inre.Event.KeyEvent.bKeyDown) // month::left
     {
-        resetpro(target, &target, currentyear, currentmonth);
+        resetpro(target, &target, &currentyear, &currentmonth);
         if (target.X != start_of_current_month.X || target.Y != start_of_current_month.Y)
         {
             if (target.X == month_pos.X + 1)
@@ -103,7 +103,7 @@ void kbevent(HANDLE hand) // it needs a std input handle
                 target.X -= 4;
             SetConsoleCursorPosition(hout, target);
         }
-        processor(target, &target, currentyear, currentmonth);
+        processor(target, &target, &currentyear, &currentmonth);
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == 'N' && inre.Event.KeyEvent.bKeyDown) // month::new
     {
@@ -112,17 +112,18 @@ void kbevent(HANDLE hand) // it needs a std input handle
     }
     else if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE && inre.Event.KeyEvent.bKeyDown) // month::exit
     {
-        resetpro(target, &target, currentyear, currentmonth);
+        resetpro(target, &target, &currentyear, &currentmonth);
         entermlist = 0;
     }
 }
-void processor(COORD tar, COORD *ptar, int currentyear, int currentmonth) // a drawing unit corresponding to kbevent
+void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a drawing unit corresponding to kbevent
 {
     HANDLE hando = GetStdHandle(STD_OUTPUT_HANDLE);
     WORD attrib;
     int i = 1;
     COORD distance = tar;
-    COORD start_of_current_month = current_month(currentyear, currentmonth);
+    COORD start_of_current_month = current_month(*currentyear, *currentmonth);
+    
     while (distance.X != start_of_current_month.X || distance.Y != start_of_current_month.Y) // for finding the i
     {
         if (distance.X == month_pos.X + 1)
@@ -134,17 +135,73 @@ void processor(COORD tar, COORD *ptar, int currentyear, int currentmonth) // a d
             distance.X -= 4;
         i++;
     }
-
+    
     if (i > 31) // not to break the end of the month
     //右键超界之后的操作放在这个分支里了
     {
-        currentmonth++;
-        if (currentmonth == 13)
-            currentyear++, currentmonth = 1;
-        *ptar = current_month(currentyear, currentmonth);
+        *currentmonth++;
+        if (*currentmonth == 13)
+        {
+            *currentyear++;
+            *currentmonth = 1;
+        }
+        int ii;
+
+        // 先把画出来的日期清除
+        *ptar = month_pos;
+        ptar->X++;
+        ptar->Y++;
+        for (ii = 1; ii <= 60; ii++)
+        {
+            SetConsoleCursorPosition(hando, *ptar);
+            // printf("%2d", i);
+            printf("  "); //清除专用
+            if (ptar->X == month_pos.X + 25)
+            {
+                ptar->X = month_pos.X + 1;
+                ptar->Y += 2;
+            }
+            else
+                ptar->X += 4;
+        }
+
+        //然后画出月份
+        ptar->X = 29;
+        ptar->Y = 9;
+        SetConsoleCursorPosition(hando, *ptar);
+        printf("               ");
+        SetConsoleCursorPosition(hando, *ptar);
+        printf("%d年%d月", *currentyear, *currentmonth);
+
+        //开始画日期
+        *ptar = current_month(*currentyear, *currentmonth);
+        SetConsoleCursorPosition(hando, *ptar);
+        int monthlength[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, *pml = monthlength + *currentmonth - 1;
+        for (ii = 1; ii <= *pml; ii++)
+        {
+            printf("%2d", ii);
+            if (ptar->X == month_pos.X + 25)
+            {
+                ptar->X = month_pos.X + 1;
+                ptar->Y += 2;
+            }
+            else
+                ptar->X += 4;
+            SetConsoleCursorPosition(hando, *ptar);
+        }
+        if (ptar->X == month_pos.X + 1) //最后一次绘制日期时target会向后移，所以要移回来
+        {
+            ptar->X = month_pos.X + 25;
+            ptar->Y -= 2;
+        }
+        else
+            ptar->X -= 4;
+        SetConsoleCursorPosition(hando, *ptar);
+        i = 1;
+        *ptar = current_month(*currentyear, *currentmonth);
     }
 
-    SetConsoleCursorPosition(hando, tar);
+    SetConsoleCursorPosition(hando, *ptar);
     attrib = BACKGROUND_INTENSITY;
     SetConsoleTextAttribute(hando, attrib);
     printf("%2d", i);
@@ -169,15 +226,15 @@ void processor(COORD tar, COORD *ptar, int currentyear, int currentmonth) // a d
             tar.X = 60;
         }
     }
-    fclose(readcontent);//使用完文件指针一定要关闭
+    fclose(readcontent); //使用完文件指针一定要关闭
 }
-void resetpro(COORD tar, COORD *ptar, int currentyear, int currentmonth)
+void resetpro(COORD tar, COORD *ptar, int *currentyear, int *currentmonth)
 {
     CONSOLE_CURSOR_INFO tempcci;
     HANDLE hando = GetStdHandle(STD_OUTPUT_HANDLE);
     int i = 1;
     COORD distance = tar;
-    COORD start_of_current_month = current_month(currentyear, currentmonth);
+    COORD start_of_current_month = current_month(*currentyear, *currentmonth);
     while (distance.X != start_of_current_month.X || distance.Y != start_of_current_month.Y) // for finding the i
     {
         if (distance.X == month_pos.X + 1)
@@ -189,15 +246,74 @@ void resetpro(COORD tar, COORD *ptar, int currentyear, int currentmonth)
             distance.X -= 4;
         i++;
     }
+    
+        /*if (i > 31) // not to break the end of the month
+        //右键超界之后的操作放在这个分支里了
+        {
+            /currentmonth++;
+            //if (*currentmonth == 13)
+              //  *currentyear++, *currentmonth = 1;
+            //*ptar = current_month(*currentyear, *currentmonth);
+            //currentmonth--;
+            //int i;
 
-    if (i > 31) // not to break the end of the month
-    //右键超界之后的操作放在这个分支里了
-    {
-        currentmonth++;
-        if (currentmonth == 13)
-            currentyear++, currentmonth = 1;
-        *ptar = current_month(currentyear, currentmonth);
-    }
+            //if (*currentmonth == 0)
+            //{
+              //  *currentmonth = 12;
+                //*currentyear--;
+            //}
+
+            // 先把画出来的日期清除
+            //*ptar = month_pos;
+            //ptar->X++;
+            //ptar->Y++;
+            //for (i = 1; i <= 60; i++)
+            //{
+              //  SetConsoleCursorPosition(hando, *ptar);
+                // printf("%2d", i);
+                //printf("  "); //清除专用
+                //if (ptar->X == month_pos.X + 25)
+                //{
+                  //  ptar->X = month_pos.X + 1;
+                    //ptar->Y += 2;
+                //}
+                //else
+                  //  ptar->X += 4;
+            //}
+            //然后画出月份
+            //ptar->X = 29;
+            //ptar->Y = 9;
+            //SetConsoleCursorPosition(hando, *ptar);
+            //printf("           ");
+            //SetConsoleCursorPosition(hando, *ptar);
+            //printf("%d年%d月", *currentyear, *currentmonth);
+
+            //开始画日期
+            /*ptar = current_month(*currentyear, *currentmonth);
+            SetConsoleCursorPosition(hando, *ptar);
+            int monthlength[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, *pml = monthlength + *currentmonth - 1;
+            for (i = 1; i <= *pml; i++)
+            {
+                printf("%2d", i);
+                if (ptar->X == month_pos.X + 25)
+                {
+                    ptar->X = month_pos.X + 1;
+                    ptar->Y += 2;
+                }
+                else
+                    ptar->X += 4;
+                SetConsoleCursorPosition(hando, *ptar);
+            }
+            if (ptar->X == month_pos.X + 1) //最后一次绘制日期时target会向后移，所以要移回来
+            {
+                ptar->X = month_pos.X + 25;
+                ptar->Y -= 2;
+            }
+            else
+                ptar->X -= 4;
+            SetConsoleCursorPosition(hando, *ptar);
+            
+        }*/
 
     SetConsoleCursorPosition(hando, tar);
     printf("%2d", i); // reset number intensity
