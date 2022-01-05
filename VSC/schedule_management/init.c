@@ -35,22 +35,7 @@ void init_draw(HANDLE hand) // initial draw
     curpos.X = 1;
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
-    printf("手册\n|m选择日期\n|选择后n新建\n|esc返回");
-
-    /*
-        FILE *ctin;
-        ctin=fopen("data.t","r");
-        int day,hour,minute;
-        while(ctin->_flag!=EOF)
-        {
-            char *content;
-            fprintf(ctin,"%03d.%02d:%02d%%%s", day, hour, minute,content);
-            curpos.Y++;
-            curpos.X=1;
-            SetConsoleCursorPosition(hand,curpos);
-            printf("%03d.%02d:%02d%%%s",day,hour,minute,content);
-        }
-    */
+    printf("手册\n|按M选择日期\n|按N新建日程\n|ESC返回\n|~~~~~~~~~~~\n|按R选择日程\n|按D删除\n|按E编辑");
 
     //-------------------
     // draw copyright
@@ -91,8 +76,7 @@ void init_draw(HANDLE hand) // initial draw
     curpos.X += 14;
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
-    /*printf("%d,%d",curpos.X,curpos.Y);
-    system("pause");*/
+
     system("date /t>date");
     FILE *p;
     p = fopen("date", "r");
@@ -103,7 +87,7 @@ void init_draw(HANDLE hand) // initial draw
     year = (*(date) - '0') * 1000 + (*(date + 1) - '0') * 100 + (*(date + 2) - '0') * 10 + (*(date + 3) - '0');
     mo = (*(date + 5) - '0') * 10 + (*(date + 6) - '0');
 
-    printf("December");
+    printf("January");
 
     month_pos.X = 20; // definition of month_pos
     month_pos.Y = 11; // definition of month_pos
@@ -125,11 +109,29 @@ void init_draw(HANDLE hand) // initial draw
         SetConsoleCursorPosition(hand, curpos);
     }
     //----------
+    // draw all event
+    FILE *readcontent;
+    readcontent = fopen("data.t", "r");
+    // the position of 日程 drawing
+    curpos.X = 60;
+    curpos.Y = 0;
+    while (!feof(readcontent))
+    {
+        int day = -1, hour = -1, min = -1, year, monthh;
+        char content[200];
+        SetConsoleCursorPosition(hand, curpos);
+        fscanf(readcontent, "%04d.%02d.%03d.%02d:%02d:\"%s\"", &year, &monthh, &day, &hour, &min, content);
+        if (hour != -1 && min != -1) //针对的是文件的最后一行空白
+            printf("时间 %04d/%02d/%02d %02d:%02d      内容 \"%s", year, monthh, day, hour, min, content);
+        curpos.Y++;
+        curpos.X = 60;
+    }
+    fclose(readcontent); //使用完文件指针一定要关闭
 }
 
 COORD current_month(int year, int month) // calculate the position of the 1st of the month
 {
-    COORD  cr;
+    COORD cr;
     cr.X = 20 + 9;
     cr.Y = 11 + 1; // start of Dec 1st,2021
     int dism = 0;

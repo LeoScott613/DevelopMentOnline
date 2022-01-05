@@ -8,14 +8,13 @@ int main(int argc, char *argv[])
     SetConsoleTitle("日程管理 @LHX  2021-2022");
     hide_cursor(hando);
     printf("%s\n", welcome);
-    //jindu(hando);
-    //Sleep(2000);
+    jindu(hando);
     system("cls");
     init_draw(hando);
     while (1)
     {
         //keyboard event
-        Sleep(30);
+        Sleep(45);
         getdate(hando);
         kbevent(handin);
     }
