@@ -335,12 +335,14 @@ void newevent(COORD tar, int currentyear, int currentmonth)
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Content:");
-    scanf("%s", content);
+    getchar();//吃掉一个空格
+    gets(content);
 
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Place:");
-    scanf("%s", place);
+    getchar();//吃掉一个空格
+    gets(place);
 
     event_st *head = buff();
     event_st *p = head, *new;
