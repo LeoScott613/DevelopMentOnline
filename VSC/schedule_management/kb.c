@@ -19,6 +19,7 @@ void kbevent() // it needs a std input handle
         processor(target, &target, &currentyear, &currentmonth); //用三次是因为要重画日程栏
         entermlist = 1;
     }
+
     if (entermlist && inre.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT && inre.Event.KeyEvent.bKeyDown) // month::right
     {
         resetpro(target, &target, &currentyear, &currentmonth);
@@ -136,6 +137,33 @@ void kbevent() // it needs a std input handle
             tar.X = 60;
         }
         fclose(readcontent); //使用完文件指针一定要关闭
+    }
+    WORD vkc = inre.Event.KeyEvent.wVirtualKeyCode;
+    if ((vkc == 'R' || vkc == 'D' || vkc == 'E') && inre.Event.KeyEvent.bKeyDown)
+    {
+        system("cls");
+        COORD curpos;
+        curpos.X = 0;
+        curpos.Y = 0;
+        SetConsoleCursorPosition(hout, curpos);
+        WORD attrib = BACKGROUND_INTENSITY;
+        event_st *p1 = buff();
+        printf("p(^_^)q :Welcome!\n\n---这里是管理界面---\n\n可以使用上下键选择一个日程\n按下D删除\n按下E编辑\n按下ESC退出\n\n");
+        while (p1->next != NULL)
+        {
+            printf(":-> 时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
+            putchar('\n');
+            p1 = p1->next;
+        }
+        printf(":-> 时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
+        putchar('\n');
+        //以上，把界面重画了
+
+        while(1)
+        {
+            ReadConsoleInput(hand,&inre,1,&back);
+
+        }
     }
 }
 void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a drawing unit corresponding to kbevent
@@ -335,13 +363,13 @@ void newevent(COORD tar, int currentyear, int currentmonth)
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Content:");
-    getchar();//吃掉一个空格
+    getchar(); //吃掉一个空格
     gets(content);
 
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Place:");
-    getchar();//吃掉一个空格
+    getchar(); //吃掉一个空格
     gets(place);
 
     event_st *head = buff();

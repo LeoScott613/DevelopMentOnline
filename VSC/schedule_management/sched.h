@@ -46,4 +46,18 @@ static const char *welcome = "         ___     ___    ___    __                 
 long int runtime;
 
 #endif
-//" ____  ____  ____  _                    ____  ____  ____  ____ \n/_   \\/  _ \\/_   \\/ \\                  /_   \\/  _ \\/_   \\/_   \\ \n /   /| / \\| /   /| |_____ _____ _____  /   /| / \\| /   / /   /\n/   /_| \\_/|/   /_| |\\____\\____\\____\\/   /_| \\_/|/   /_/   /_\n\\____/\\____/\\____/\\_/                  \\____/\\____/\\____/\\____/";
+
+/*
+base64:
+6L+Z5Lu96K++56iL6K6+6K6h5rqQ56CB5YWs5byA5ZyoaHR0cHM6Ly9naXRodWIuY29t
+L0xlb1Njb3R0NjEzL0RldmVsb3BNZW50T25saW5lL3RyZWUvbWFzdGVyL1ZTQy9zY2hl
+ZHVsZV9tYW5hZ2VtZW5044CC6K+05a6e6K+d77yM5ZyoY29uc29sZeWBmuS4gOS4qnVp
+5pi+5b6X57Sv6LWY5LiU5LiN576O6KeC44CC54S26ICM5a+55LqO5aSn5LiA5paw55Sf
+5p2l6K+077yM5YGa5LiA5Liq6L+Z56eN5LyqdWnnmoTnoa7mmK/nrKblkIjmiJHku6zn
+moTog73lipvojIPlm7TjgILomb3nhLblvojlpJrmioDmnK/pg73msqHmnInkvb/nlKjl
+iLDvvIzlvojlpJrnjrDlnKjnmoTmioDmnK/lnKjlrp7pmYXlt6XkvZzkuK3mmK/kvY7m
+lYjnmoTlgZrms5XvvIzlroPku43nhLbmmK/miYDmnIljc+Wkp+S4gOaWsOeUn+eahOS4
+gOS4que+juWlveeahOS9nOWTgeWQp+OAguavleern+Wug+WNoOeUqOS6huaIkeS7rOmC
+o+S5iOWkmuaXtumXtO+8jOS4lOesrOS4gOasoeiuqeaIkeS7rOaOpeinpuWIsOS6huW3
+peeoi+eahOeuoeeQhuWSjOaAnee7tA==
+*/

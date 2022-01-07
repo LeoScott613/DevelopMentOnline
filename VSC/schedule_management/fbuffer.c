@@ -11,10 +11,9 @@ Create buffer at first, return the address of the buffer every time when called,
         FILE *f = fopen("data.t", "r"); // read file and make a link list
         event_st *p1, *new;
         int once = 1;
-        // p1 = (event_st *)malloc(sizeof(event_st));
         while (!feof(f))
         {
-            int day = -1, hour = -1, min = -1, year, monthh;
+            int day = -1, hour = -1, min = -1, year=-1, monthh=-1;
             char content[50], place[50];
             fscanf(f, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
             if (day != -1 && hour != -1 && min != -1) // Because at the end of the data.t, there will always be an empty line
