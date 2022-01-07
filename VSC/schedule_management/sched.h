@@ -18,19 +18,30 @@ COORD manual_pos;
 COORD time_pos;
 
 void init_draw(HANDLE);
-void getdate(HANDLE);
-void hide_cursor(HANDLE);
+void getdate();
+void hide_cursor();
 void show_cursor();
 void jindu(HANDLE);
-void kbevent(HANDLE);
-void resetpro(COORD,COORD *,int*,int*);
-void processor(COORD,COORD *,int*,int*); // the first time I try not passing the handle..
-void newevent(COORD,int,int);
+void kbevent();
+void resetpro(COORD, COORD *, int *, int *);
+void processor(COORD, COORD *, int *, int *); // the first time I try not passing the handle..
+void newevent(COORD, int, int);
 void lhxResetEvent();
 COORD current_month();
 static const char *welcome = "         ___     ___    ___    __                              ___     ___    ___    ___  \n        |__ \\   / _ \\  |__ \\  /_ |                            |__ \\   / _ \\  |__ \\  |__ \\ \n           ) | | | | |    ) |  | |  ______   ______   ______     ) | | | | |    ) |    ) |\n          / /  | | | |   / /   | | |______| |______| |______|   / /  | | | |   / /    / / \n         / /_  | |_| |  / /_   | |                             / /_  | |_| |  / /_   / /_ \n        |____|  \\___/  |____|  |_|                            |____|  \\___/  |____| |____|\n";
 
 long int runtime;
+typedef struct _event
+{
+    int year;
+    int month;
+    int day;
+    int hour;
+    int min;
+    char content[50];
+    char place[50];
+    struct event *next;
+} event_st;
 
 #endif
 //" ____  ____  ____  _                    ____  ____  ____  ____ \n/_   \\/  _ \\/_   \\/ \\                  /_   \\/  _ \\/_   \\/_   \\ \n /   /| / \\| /   /| |_____ _____ _____  /   /| / \\| /   / /   /\n/   /_| \\_/|/   /_| |\\____\\____\\____\\/   /_| \\_/|/   /_/   /_\n\\____/\\____/\\____/\\_/                  \\____/\\____/\\____/\\____/";

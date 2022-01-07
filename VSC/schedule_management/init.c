@@ -1,6 +1,7 @@
 #include "sched.h"
-void hide_cursor(HANDLE hand) // hide cursor
+void hide_cursor() // hide cursor
 {
+    HANDLE hand = GetStdHandle(STD_OUTPUT_HANDLE);
     cci.bVisible = 0;
     cci.dwSize = 1;
     SetConsoleCursorInfo(hand, &cci);
@@ -117,12 +118,12 @@ void init_draw(HANDLE hand) // initial draw
     curpos.Y = 0;
     while (!feof(readcontent))
     {
-        int day = -1, hour = -1, min = -1, year, monthh;
-        char content[200];
+        int day = -1, hour = -1, min = -1, year = -1, monthh = -1;
+        char content[50], place[50];
         SetConsoleCursorPosition(hand, curpos);
-        fscanf(readcontent, "%04d.%02d.%03d.%02d:%02d:\"%s\"", &year, &monthh, &day, &hour, &min, content);
-        if (hour != -1 && min != -1) //针对的是文件的最后一行空白
-            printf("时间 %04d/%02d/%02d %02d:%02d      内容 \"%s", year, monthh, day, hour, min, content);
+        fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
+        if (hour != -1 && min != -1 && year != -1 && monthh != -1) //针对的是文件的最后一行空白
+            printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", year, monthh, day, hour, min, content, place);
         curpos.Y++;
         curpos.X = 60;
     }

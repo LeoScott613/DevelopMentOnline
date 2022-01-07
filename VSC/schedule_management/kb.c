@@ -1,8 +1,9 @@
 #include "sched.h"
-void kbevent(HANDLE hand) // it needs a std input handle
+void kbevent() // it needs a std input handle
 {
     INPUT_RECORD inre;
     HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hand = GetStdHandle(STD_INPUT_HANDLE);
     DWORD back;          //用来接受成功读取记录数
     static COORD target; // used to transmit the coordinate to processor()
     static int entermlist = 0;
@@ -126,11 +127,11 @@ void kbevent(HANDLE hand) // it needs a std input handle
         while (!feof(readcontent))
         {
             int day = -1, hour = -1, min = -1, year, monthh;
-            char content[200];
+            char content[50], place[50];
             SetConsoleCursorPosition(hout, tar);
-            fscanf(readcontent, "%04d.%02d.%03d.%02d:%02d:\"%s\"", &year, &monthh, &day, &hour, &min, content);
+            fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
             if (hour != -1 && min != -1) //针对的是文件的最后一行空白
-                printf("时间 %04d/%02d/%02d %02d:%02d      内容 \"%s", year, monthh, day, hour, min, content);
+                printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点 %s", year, monthh, day, hour, min, content, place);
             tar.Y++;
             tar.X = 60;
         }
@@ -238,12 +239,13 @@ void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a
     while (!feof(readcontent))
     {
         int day = -1, hour = 0, min = 0, year, monthh;
-        char content[200];
+        char content[50], place[50];
         SetConsoleCursorPosition(hando, tar);
-        fscanf(readcontent, "%04d.%02d.%03d.%02d:%02d:\"%s\"", &year, &monthh, &day, &hour, &min, content);
+        fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
+
         if (day == i && year == *currentyear && monthh == *currentmonth)
         {
-            printf("时间 %02d:%02d      内容 \"%s", hour, min, content);
+            printf("时间 %02d:%02d  内容 \"%s 地点\"%s\"", hour, min, content, place);
             tar.Y++;
             tar.X = 60;
         }
@@ -288,7 +290,7 @@ void newevent(COORD tar, int currentyear, int currentmonth)
 {
 
     int i = 1, h = 0, min = 0;
-    char content[50];
+    char content[50], place[50];
     HANDLE hando;
     COORD curpos;
     FILE *content_out;
@@ -333,9 +335,14 @@ void newevent(COORD tar, int currentyear, int currentmonth)
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Content:");
-    scanf("%s", &content);
+    scanf("%s", content);
 
-    fprintf(content_out, "%04d.%02d.%03d.%02d:%02d:\"%s\"\n", currentyear, currentmonth, i, h, min, &content);
+    curpos.Y += 2;
+    SetConsoleCursorPosition(hando, curpos);
+    printf("Place:");
+    scanf("%s", place);
+
+    fprintf(content_out, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"\n", place, currentyear, currentmonth, i, h, min, content);
     fclose(content_out);
 
     // clear list drawing
