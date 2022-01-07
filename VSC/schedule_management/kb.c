@@ -294,8 +294,6 @@ void newevent(COORD tar, int currentyear, int currentmonth)
     char content[50], place[50];
     HANDLE hando;
     COORD curpos;
-    FILE *content_out;
-    content_out = fopen("data.t", "a");
     COORD start_of_current_month = current_month(currentyear, currentmonth);
 
     while (tar.X != start_of_current_month.X || tar.Y != start_of_current_month.Y) // for finding the i
@@ -326,6 +324,7 @@ void newevent(COORD tar, int currentyear, int currentmonth)
         curpos.X = 60;
     }
 
+    // start to input data of a new event
     curpos.X = 60;
     curpos.Y = 0;
     show_cursor(); // show the cursor in order to indicate the position to the user
@@ -343,8 +342,22 @@ void newevent(COORD tar, int currentyear, int currentmonth)
     printf("Place:");
     scanf("%s", place);
 
-    fprintf(content_out, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"\n", place, currentyear, currentmonth, i, h, min, content);
-    fclose(content_out);
+    event_st *head = buff();
+    event_st *p = head, *new;
+    while (p->next != NULL)
+        p = p->next;
+    new = (event_st *)malloc(sizeof(event_st));
+    p->next = new;
+    p = p->next;
+    p->next = NULL;
+    p->year = currentyear;
+    p->month = currentmonth;
+    p->day = i;
+    p->hour = h;
+    p->min = min;
+    strcpy(p->content, content);
+    strcpy(p->place, place);
+    buff(); // renew file from buffer
 
     // clear list drawing
     curpos.X = 60;

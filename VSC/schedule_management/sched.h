@@ -40,7 +40,7 @@ void processor(COORD, COORD *, int *, int *); // the first time I try not passin
 void newevent(COORD, int, int);
 void lhxResetEvent();
 COORD current_month();
-event_st *buff(int,int,int);
+event_st *buff();
 static const char *welcome = "         ___     ___    ___    __                              ___     ___    ___    ___  \n        |__ \\   / _ \\  |__ \\  /_ |                            |__ \\   / _ \\  |__ \\  |__ \\ \n           ) | | | | |    ) |  | |  ______   ______   ______     ) | | | | |    ) |    ) |\n          / /  | | | |   / /   | | |______| |______| |______|   / /  | | | |   / /    / / \n         / /_  | |_| |  / /_   | |                             / /_  | |_| |  / /_   / /_ \n        |____|  \\___/  |____|  |_|                            |____|  \\___/  |____| |____|\n";
 
 long int runtime;

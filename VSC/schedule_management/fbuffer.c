@@ -1,15 +1,12 @@
 #include "sched.h"
+event_st *buff() // create a linklist to interact with file
 /*
-indicator: 0,1,2
-0:delete
-1:edit
-2:new
+Create buffer at first, return the address of the buffer every time when called, and renew the data.t from the buffer
 */
-event_st *buff(int indicator, int year, int month) // create a linklist to interact with file
 {
     static int initial = 1;
-    static event_st *head;
-    if (initial)
+    static event_st *bufferhead;
+    if (initial) // initialization: create buffer
     {
         FILE *f = fopen("data.t", "r"); // read file and make a link list
         event_st *p1, *new;
@@ -24,8 +21,8 @@ event_st *buff(int indicator, int year, int month) // create a linklist to inter
             {
                 if (once)
                 {
-                    head = (event_st *)malloc(sizeof(event_st));
-                    p1 = head;
+                    bufferhead = (event_st *)malloc(sizeof(event_st));
+                    p1 = bufferhead;
                     p1->next = NULL;
                     once = 0;
                 }
@@ -50,16 +47,16 @@ event_st *buff(int indicator, int year, int month) // create a linklist to inter
 
         initial = 0;
     }
-    if (indicator == 0) // delete
+    else // every time when called: renew the data file from buffer
     {
-    }
-    else if (indicator == 1) // edit
-    {
-    }
-    else if (indicator == 2) // new
-    {
+        FILE *f;
+        f = fopen("data.t", "w");
+        event_st *p = bufferhead;
+        while (p->next != NULL)
+            fprintf(f, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"\n", p->place, p->year, p->month, p->day, p->hour, p->min, p->content);
+        fprintf(f, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"\n", p->place, p->year, p->month, p->day, p->hour, p->min, p->content);
+        fclose(f);
 
-    }; // renew the file
-    ;  // fprintf
-    return head;
+    } // renew the file
+    return bufferhead;
 }

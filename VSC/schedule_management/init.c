@@ -111,12 +111,10 @@ void init_draw(HANDLE hand) // initial draw
     }
     //----------
     // draw all event
-    FILE *readcontent;
-    readcontent = fopen("data.t", "r");
     // the position of 日程 drawing
     curpos.X = 60;
     curpos.Y = 0;
-    event_st *data = buff(-1, year, mo); //-1, in order not to do anything and get the data buffer (linklist)
+    event_st *data = buff();
 
     event_st *p1 = data;
     while (p1->next != NULL)
@@ -130,20 +128,6 @@ void init_draw(HANDLE hand) // initial draw
     }
     SetConsoleCursorPosition(hand, curpos);
     printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
-    /*  
-        while (!feof(readcontent))
-        {
-            int day = -1, hour = -1, min = -1, year = -1, monthh = -1;
-            char content[50], place[50];
-            SetConsoleCursorPosition(hand, curpos);
-            fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
-            if (hour != -1 && min != -1 && year != -1 && monthh != -1) //针对的是文件的最后一行空白
-                printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", year, monthh, day, hour, min, content, place);
-            curpos.Y++;
-            curpos.X = 60;
-        }
-        fclose(readcontent); //使用完文件指针一定要关闭
-        */
 }
 
 COORD current_month(int year, int month) // calculate the position of the 1st of the month
