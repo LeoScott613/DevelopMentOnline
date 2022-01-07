@@ -53,7 +53,10 @@ Create buffer at first, return the address of the buffer every time when called,
         f = fopen("data.t", "w");
         event_st *p = bufferhead;
         while (p->next != NULL)
+        {
             fprintf(f, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"\n", p->place, p->year, p->month, p->day, p->hour, p->min, p->content);
+            p = p->next;//!!不位移就回重复写出数据
+        }
         fprintf(f, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"\n", p->place, p->year, p->month, p->day, p->hour, p->min, p->content);
         fclose(f);
 
