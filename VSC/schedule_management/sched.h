@@ -1,10 +1,22 @@
-// compile information:  gcc main.c jindu.c init.c get_date.c kb.c
+// compile information:  gcc main.c jindu.c init.c get_date.c kb.c fbuffer.c
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
 #include <time.h>
 #ifndef SCHED_L
 #define SCHED_L
+
+typedef struct _event
+{
+    int year;
+    int month;
+    int day;
+    int hour;
+    int min;
+    char content[50];
+    char place[50];
+    struct _event *next;
+} event_st;
 
 CONSOLE_CURSOR_INFO cci;
 CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -28,20 +40,10 @@ void processor(COORD, COORD *, int *, int *); // the first time I try not passin
 void newevent(COORD, int, int);
 void lhxResetEvent();
 COORD current_month();
+event_st *buff(int,int,int);
 static const char *welcome = "         ___     ___    ___    __                              ___     ___    ___    ___  \n        |__ \\   / _ \\  |__ \\  /_ |                            |__ \\   / _ \\  |__ \\  |__ \\ \n           ) | | | | |    ) |  | |  ______   ______   ______     ) | | | | |    ) |    ) |\n          / /  | | | |   / /   | | |______| |______| |______|   / /  | | | |   / /    / / \n         / /_  | |_| |  / /_   | |                             / /_  | |_| |  / /_   / /_ \n        |____|  \\___/  |____|  |_|                            |____|  \\___/  |____| |____|\n";
 
 long int runtime;
-typedef struct _event
-{
-    int year;
-    int month;
-    int day;
-    int hour;
-    int min;
-    char content[50];
-    char place[50];
-    struct event *next;
-} event_st;
 
 #endif
 //" ____  ____  ____  _                    ____  ____  ____  ____ \n/_   \\/  _ \\/_   \\/ \\                  /_   \\/  _ \\/_   \\/_   \\ \n /   /| / \\| /   /| |_____ _____ _____  /   /| / \\| /   / /   /\n/   /_| \\_/|/   /_| |\\____\\____\\____\\/   /_| \\_/|/   /_/   /_\n\\____/\\____/\\____/\\_/                  \\____/\\____/\\____/\\____/";

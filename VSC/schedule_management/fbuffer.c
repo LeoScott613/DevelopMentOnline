@@ -5,13 +5,13 @@ indicator: 0,1,2
 1:edit
 2:new
 */
-void buff(int indicator, int year, int month) // create a linklist to interact with file
+event_st *buff(int indicator, int year, int month) // create a linklist to interact with file
 {
     static int initial = 1;
     static event_st *head;
     if (initial)
     {
-        FILE *f = fopen("data.t", "a"); // read file and make a link list
+        FILE *f = fopen("data.t", "r"); // read file and make a link list
         event_st *p1, *new;
         int once = 1;
         // p1 = (event_st *)malloc(sizeof(event_st));
@@ -26,14 +26,15 @@ void buff(int indicator, int year, int month) // create a linklist to interact w
                 {
                     head = (event_st *)malloc(sizeof(event_st));
                     p1 = head;
-                    p1->next = new;
+                    p1->next = NULL;
                     once = 0;
                 }
                 else
                 {
                     new = (event_st *)malloc(sizeof(event_st));
                     new->next = NULL;
-                    p1 = new;
+                    p1->next = new; // not "p1=new" because the will cause "dishook"
+                    p1 = p1->next;
                 }
 
                 p1->year = year;
@@ -45,6 +46,7 @@ void buff(int indicator, int year, int month) // create a linklist to interact w
                 strcpy(p1->place, place);
             }
         }
+        fclose(f);
 
         initial = 0;
     }
@@ -59,4 +61,5 @@ void buff(int indicator, int year, int month) // create a linklist to interact w
 
     }; // renew the file
     ;  // fprintf
+    return head;
 }
