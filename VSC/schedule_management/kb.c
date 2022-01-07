@@ -231,6 +231,7 @@ void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a
 
     SetConsoleTextAttribute(hando, csbi.wAttributes); // reset text attribute, necessary
 
+    //在右侧画出日程清单
     FILE *readcontent;
     readcontent = fopen("data.t", "r");
     // the position of 日程 drawing
@@ -240,9 +241,9 @@ void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a
     {
         int day = -1, hour = 0, min = 0, year, monthh;
         char content[50], place[50];
-        SetConsoleCursorPosition(hando, tar);
         fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
 
+        SetConsoleCursorPosition(hando, tar);
         if (day == i && year == *currentyear && monthh == *currentmonth)
         {
             printf("时间 %02d:%02d  内容 \"%s 地点\"%s\"", hour, min, content, place);
