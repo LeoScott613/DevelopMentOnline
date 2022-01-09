@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
-#include <time.h>
 #ifndef SCHED_L
 #define SCHED_L
 

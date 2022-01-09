@@ -15,6 +15,8 @@ void show_cursor() // show cursor
 }
 void init_draw(HANDLE hand) // initial draw
 {
+    SetConsoleTitle("日程管理 @LHX  2021-2022");
+
     WORD attrib;
     attrib = csbi.wAttributes;
     SetConsoleTextAttribute(hand, attrib);
@@ -36,7 +38,7 @@ void init_draw(HANDLE hand) // initial draw
     curpos.X = 1;
     curpos.Y++;
     SetConsoleCursorPosition(hand, curpos);
-    printf("手册\n|按M选择日期\n|按N新建日程\n|ESC返回\n|~~~~~~~~~~~\n|按R选择日程\n|按D删除\n|按E编辑");
+    printf("手册\n|按M选择日期\n|按N新建日程\n|ESC返回\n|~~~~~~~~~~~\n|按R选择日程\n|按D删除\n|按E编辑\n|~~~~~~~~~~~\n|禁输入空格 |");
 
     //-------------------
     // draw copyright
@@ -120,14 +122,14 @@ void init_draw(HANDLE hand) // initial draw
     while (p1->next != NULL)
     {
         SetConsoleCursorPosition(hand, curpos);
-        printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
+        printf("时间 %04d/%02d/%02d %02d:%02d  内容 %s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
         // the empty line is solved by buff();no empty stuff in the buffer linklist
         curpos.Y++;
         curpos.X = 60;
         p1 = p1->next;
     }
     SetConsoleCursorPosition(hand, curpos);
-    printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
+    printf("时间 %04d/%02d/%02d %02d:%02d  内容 %s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
 }
 
 COORD current_month(int year, int month) // calculate the position of the 1st of the month

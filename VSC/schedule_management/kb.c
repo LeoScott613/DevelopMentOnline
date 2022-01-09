@@ -1,7 +1,7 @@
 #include "sched.h"
 void kbevent() // it needs a std input handle
 {
-    INPUT_RECORD inre;
+    static INPUT_RECORD inre;
     HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
     HANDLE hand = GetStdHandle(STD_INPUT_HANDLE);
     DWORD back;          //用来接受成功读取记录数
@@ -120,49 +120,27 @@ void kbevent() // it needs a std input handle
         entermlist = 0;
 
         // next: draw all event
-        FILE *readcontent;
-        readcontent = fopen("data.t", "r");
+        event_st *eventbuffer = buff();
         // the position of 日程 drawing
         tar.X = 60;
         tar.Y = 0;
-        while (!feof(readcontent))
+        do
         {
-            int day = -1, hour = -1, min = -1, year, monthh;
-            char content[50], place[50];
             SetConsoleCursorPosition(hout, tar);
-            fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
-            if (hour != -1 && min != -1) //针对的是文件的最后一行空白
-                printf("时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点 %s", year, monthh, day, hour, min, content, place);
+            printf("时间 %04d/%02d/%02d %02d:%02d  内容 %s 地点 %s", eventbuffer->year, eventbuffer->month, eventbuffer->day, eventbuffer->hour, eventbuffer->min, eventbuffer->content, eventbuffer->place);
             tar.Y++;
             tar.X = 60;
-        }
-        fclose(readcontent); //使用完文件指针一定要关闭
+            eventbuffer = eventbuffer->next;
+        } while (eventbuffer != NULL);
     }
     WORD vkc = inre.Event.KeyEvent.wVirtualKeyCode;
-    if ((vkc == 'R' || vkc == 'D' || vkc == 'E') && inre.Event.KeyEvent.bKeyDown)
+    if ((vkc == 'R' || vkc == 'D' || vkc == 'E') && inre.Event.KeyEvent.bKeyDown) // event list menu
     {
-        system("cls");
-        COORD curpos;
-        curpos.X = 0;
-        curpos.Y = 0;
-        SetConsoleCursorPosition(hout, curpos);
-        WORD attrib = BACKGROUND_INTENSITY;
-        event_st *p1 = buff();
-        printf("p(^_^)q :Welcome!\n\n---这里是管理界面---\n\n可以使用上下键选择一个日程\n按下D删除\n按下E编辑\n按下ESC退出\n\n");
-        while (p1->next != NULL)
+        while (1)
         {
-            printf(":-> 时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
-            putchar('\n');
-            p1 = p1->next;
-        }
-        printf(":-> 时间 %04d/%02d/%02d %02d:%02d  内容 \"%s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
-        putchar('\n');
-        //以上，把界面重画了
-
-        while(1)
-        {
-            ReadConsoleInput(hand,&inre,1,&back);
-
+            int exit_st = management();
+            if (exit_st)
+                break;
         }
     }
 }
@@ -260,26 +238,21 @@ void processor(COORD tar, COORD *ptar, int *currentyear, int *currentmonth) // a
     SetConsoleTextAttribute(hando, csbi.wAttributes); // reset text attribute, necessary
 
     //在右侧画出日程清单
-    FILE *readcontent;
-    readcontent = fopen("data.t", "r");
+    event_st *p = buff();
     // the position of 日程 drawing
     tar.X = 60;
     tar.Y = 0;
-    while (!feof(readcontent))
+    while (p != NULL)
     {
-        int day = -1, hour = 0, min = 0, year, monthh;
-        char content[50], place[50];
-        fscanf(readcontent, "%s %04d.%02d.%03d.%02d:%02d:\"%s\"", place, &year, &monthh, &day, &hour, &min, content);
-
         SetConsoleCursorPosition(hando, tar);
-        if (day == i && year == *currentyear && monthh == *currentmonth)
+        if (p->day == i && p->year == *currentyear && p->month == *currentmonth)
         {
-            printf("时间 %02d:%02d  内容 \"%s 地点\"%s\"", hour, min, content, place);
+            printf("时间 %02d:%02d  内容 %s 地点\"%s\"", p->hour, p->min, p->content, p->place);
             tar.Y++;
             tar.X = 60;
         }
+        p = p->next;
     }
-    fclose(readcontent); //使用完文件指针一定要关闭
 }
 void resetpro(COORD tar, COORD *ptar, int *currentyear, int *currentmonth)
 {
@@ -363,13 +336,12 @@ void newevent(COORD tar, int currentyear, int currentmonth)
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Content:");
-    getchar(); //吃掉一个空格
+    getchar(); //吃掉一个回车
     gets(content);
 
     curpos.Y += 2;
     SetConsoleCursorPosition(hando, curpos);
     printf("Place:");
-    getchar(); //吃掉一个空格
     gets(place);
 
     event_st *head = buff();
@@ -418,3 +390,102 @@ void lhxResetEvent() // conflicting name
     printf("%s", &newline);
 }
 */
+int management() // have no choice to write this
+{
+    int exit_status = 0;
+
+    system("cls");
+    COORD curpos;
+    HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE), hand = GetStdHandle(STD_INPUT_HANDLE);
+    curpos.X = 0;
+    curpos.Y = 0;
+    SetConsoleCursorPosition(hout, curpos);
+    WORD attrib = BACKGROUND_INTENSITY;
+    event_st *p1 = buff();
+    printf("p(^_^)q :Welcome!\n\n---这里是管理界面---\n\n可以使用上下键选择一个日程\n按下D删除\n按下E编辑\n按下ESC退出\n\n");
+    int bufferlength = 0;
+    while (p1 != NULL)
+    {
+        printf(":-> 时间 %04d/%02d/%02d %02d:%02d  内容 %s 地点\"%s\"", p1->year, p1->month, p1->day, p1->hour, p1->min, p1->content, p1->place);
+        putchar('\n');
+        p1 = p1->next;
+        bufferlength++; //记录缓冲链表的长度以备后续使用
+    }
+    putchar('\n');
+    //以上，把界面重画了
+    curpos.X = 0;
+    curpos.Y = 9;
+    SetConsoleCursorPosition(hout, curpos);
+    SetConsoleTextAttribute(hout, attrib);
+    printf(":->");
+    SetConsoleTextAttribute(hout, csbi.wAttributes);
+    //以上是画一个深色箭头
+    int indicator = 1;
+    INPUT_RECORD inre;
+    DWORD back;
+    while (1)
+    {
+        ReadConsoleInput(hand, &inre, 1, &back);
+        WORD key = inre.Event.KeyEvent.wVirtualKeyCode;
+        if (indicator > 1 && key == VK_UP && inre.Event.KeyEvent.bKeyDown)
+        {
+            curpos.X = 0;
+            SetConsoleCursorPosition(hout, curpos);
+            printf(":->");
+            SetConsoleTextAttribute(hout, attrib);
+            curpos.X = 0;
+            curpos.Y--;
+            SetConsoleCursorPosition(hout, curpos);
+            printf(":->");
+            SetConsoleTextAttribute(hout, csbi.wAttributes);
+            indicator--;
+        }
+        else if (indicator < bufferlength && key == VK_DOWN && inre.Event.KeyEvent.bKeyDown)
+        {
+            curpos.X = 0;
+            SetConsoleCursorPosition(hout, curpos);
+            printf(":->");
+            SetConsoleTextAttribute(hout, attrib);
+            curpos.X = 0;
+            curpos.Y++;
+            SetConsoleCursorPosition(hout, curpos);
+            printf(":->");
+            SetConsoleTextAttribute(hout, csbi.wAttributes);
+            indicator++;
+        }
+        else if (key == 'D' && inre.Event.KeyEvent.bKeyDown)
+        {
+            int i = indicator - 1;
+            event_st *head = buff(), *p = head, *pahead = p;
+
+            for (; i > 0; i--)
+                p = p->next;
+            while (pahead->next != p && pahead != p) //防止它们在开头相遇
+            {
+                pahead = pahead->next;
+            }
+            if (pahead->next == p) //删除的不是头节点
+            {
+                pahead->next = p->next;
+            }
+            else if (p == head && bufferlength != 1) //删除的是头节点
+            {
+                // head = head->next;  无效的做法
+                char requirement[50] = "6K+35aS05oyH6ZKI5L2N56e7"; // base64: 请buff函数改变头指针
+                strcpy(head->content, requirement);
+            }
+            if (bufferlength != 1)
+                free(p);
+            else
+                SetConsoleTitle("警告！！！至少要保留一个日程！！！");
+            buff();
+            return exit_status;
+        }
+        else if (key == VK_ESCAPE && inre.Event.KeyEvent.bKeyDown)
+        {
+            system("cls");
+            init_draw(hout);
+            return !(exit_status);
+        }
+    }
+}
