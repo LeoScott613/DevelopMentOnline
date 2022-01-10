@@ -1,9 +1,6 @@
 # DevelopMentOnline
 **Quite a difficulty to create this repository**  
 *有时候push会成功但是大部分时候都会失败...基本上只能用git GUI...最后也没找到它时而能连接时而不能的问题所在*
-
-## $$1-\infty$$
-*放到github后只能脑补公式了*
   
 ---
 >**Directory Intro-**
