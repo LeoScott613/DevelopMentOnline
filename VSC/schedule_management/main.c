@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     GetConsoleScreenBufferInfo(hando, &csbi);
     hide_cursor();
     printf("%s\n", welcome);
-    // jindu(hando);
+    jindu(hando);
     system("cls");
     init_draw(hando);
     while (1)
