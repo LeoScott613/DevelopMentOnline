@@ -481,6 +481,62 @@ int management() // have no choice to write this
             buff();
             return exit_status;
         }
+        else if (key == 'E' && inre.Event.KeyEvent.bKeyDown)
+        {
+            int i = indicator - 1;
+            event_st *head = buff(), *p = head;
+
+            for (; i > 0; i--)
+                p = p->next;
+            //以下是编辑时要求进行输入
+            curpos.X = 50;
+            curpos.Y = 0;
+            SetConsoleCursorPosition(hout, curpos);
+            printf("-------Edit current event-------");
+            curpos.Y++;
+            curpos.X = 50;
+            SetConsoleCursorPosition(hout, curpos);
+            printf("//禁止输入空格");
+            curpos.Y++;
+            curpos.X = 50;
+            SetConsoleCursorPosition(hout, curpos);
+            printf("Time(hour:minute):");
+            scanf("%d:%d", &(p->hour), &(p->min));
+            getchar(); // eat an enter
+            curpos.Y++;
+            curpos.X = 50;
+            SetConsoleCursorPosition(hout, curpos);
+            printf("Content:");
+            gets(p->content);
+            curpos.Y++;
+            curpos.X = 50;
+            SetConsoleCursorPosition(hout, curpos);
+            printf("Place:");
+            gets(p->place);
+
+            // clear stage
+            curpos.X = 50;
+            curpos.Y = 0;
+            SetConsoleCursorPosition(hout, curpos);
+            int j = 0;
+            while (j < 5)
+            {
+                printf("                                       ");
+                curpos.X = 50;
+                curpos.Y++;
+                SetConsoleCursorPosition(hout, curpos);
+                j++;
+            }
+            /*
+            curpos.Y = 9;
+            curpos.X = 0;
+            SetConsoleCursorPosition(hout, curpos);
+            indicator = 1; //重置回箭头处
+            */
+
+            buff(); // renew the file from buffer
+            return 0;
+        }
         else if (key == VK_ESCAPE && inre.Event.KeyEvent.bKeyDown)
         {
             system("cls");
