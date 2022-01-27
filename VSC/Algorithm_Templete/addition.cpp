@@ -32,7 +32,7 @@ string add(string ad1, string ad2)
         result = temp + result;
     }
     for(r=result.begin();r!=result.end();r++)
-    *r+='0';
+        *r+='0';
     return result;
 }
 int main()

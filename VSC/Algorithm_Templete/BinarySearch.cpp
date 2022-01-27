@@ -12,9 +12,9 @@ int bs(int a[], int value, int n) // for array
         mid = low + (high - low) / 2;
         if (a[mid] == value)
             return mid;
-        else if (a[mid] > value)
+        else if (value < a[mid])
             high = mid - 1;
-        else if (a[mid] < value)
+        else if (value > a[mid])
             low = mid + 1;
     }
     return -1;
