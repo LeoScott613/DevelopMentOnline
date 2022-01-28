@@ -23,13 +23,16 @@ int main()
         {
             *ir+=*imul1**imul2;
             if(ir==result.end()-1)
+            {
                 result.push_back(0);
-            ir=result.end()-1;
+                ir=result.end()-1;
+            }
+            else ir++;
         }
         i++;
         ir=result.begin()+i;
     }
-    for(ir=result.end()-1;*ir==0;ir--)
+    for(ir=result.end()-1;*ir==0&&ir!=result.begin();ir--)
         ir=result.erase(ir);
     for(ir=result.begin();ir!=result.end()-1;ir++)
         if(*ir>9)
