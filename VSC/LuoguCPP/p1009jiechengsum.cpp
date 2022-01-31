@@ -57,14 +57,15 @@ int main()
         musum.clear();
         for(vector<int>::iterator ic(c.end()-1);ic>=c.begin();ic--)
         {
-            if(*ic<10)
-                musum.push_back(*ic+'0');
-            else
-                while(*ic)
+            if(*ic>9)
+            {
+                for(int ixi(*ic);ixi;ixi/=10)
                 {
-                    musum.push_back(*ic%10+'0');
-                    *ic/=10;
+                    *(c.end()-1)=ixi%10;
+                    ixi/=10;
                 }
+            }
+            else musum.push_back(*ic+'0');
         }
         cout<<musum<<' ';
         multi.push_back(musum);
