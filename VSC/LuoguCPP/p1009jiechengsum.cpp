@@ -19,7 +19,7 @@ int main()
         int eat_i(i);
         while(eat_i)
         {
-            stri.push_back(eat_i%10);
+            stri.push_back(eat_i%10+'0');
             eat_i/=10;
         }
         //musum*=stri;
@@ -29,7 +29,7 @@ int main()
         for(string::iterator is(stri.begin());is!=stri.end();is++)
             b.push_back(*is-'0');
         c.push_back(0);
-        vector<int>::difference_type movement(0);
+        vector<int>::difference_type imove(0);
         for(vector<int>::iterator ia(a.end()-1),ic(c.begin());ia>=a.begin();ia--)
         {
             for(vector<int>::iterator ib(b.end()-1);ib>=b.begin();ib--)
@@ -42,10 +42,11 @@ int main()
                 }
                 else ic++;
             }
-            movement++;
-            ic=c.begin()+movement;
+            imove++;
+            ic=c.begin()+imove;
         }
-        if(*(c.end()-1)==0&&c.end()!=c.begin()+1) c.erase(c.end()-1);
+        if(*(c.end()-1)==0&&c.end()!=c.begin()+1) 
+            c.erase(c.end()-1);
         for(vector<int>::iterator ic(c.begin());ic!=c.end()-1;ic++)
             if(*ic>9)
             {
@@ -54,17 +55,18 @@ int main()
             }
         //musum=c;
         musum.clear();
-        for(vector<int>::iterator ic(c.end()-1);ic>=c.begin();ic++)
+        for(vector<int>::iterator ic(c.end()-1);ic>=c.begin();ic--)
         {
             if(*ic<10)
                 musum.push_back(*ic+'0');
             else
                 while(*ic)
                 {
-                    musum.push_back(*ic%10);
+                    musum.push_back(*ic%10+'0');
                     *ic/=10;
                 }
         }
+        cout<<musum<<' ';
         multi.push_back(musum);
     }
     //1!,2!,...,n! completed
