@@ -13,7 +13,7 @@ int main()
     }
     string musum("1");
     vector<string> multi;
-    for(int i(1);i<=n;i++)
+    for(int i(1);i<=n;i++)//multiply
     {    //musum*=i;
         string stri;
         int eat_i(i);
@@ -72,15 +72,15 @@ int main()
     //1!,2!,...,n! completed
     //1!+...+n!;
     string final,result("1");
-    for(int i(1);i<n;i++)
+    for(int i(1);i<n;i++)//addition
     {
         vector<string>::iterator imul(multi.begin()+i);
         //result+*imul;
         vector<int> a,b,t,m,c;
         vector<int>::iterator it,im,ic;
-        for(string::iterator is((*imul).end());is>=(*imul).begin();is--)
+        for(string::iterator is((*imul).end()-1);is>=(*imul).begin();is--)
             a.push_back(*is-'0');
-        for(string::iterator is(result.end());is>=result.begin();is--)
+        for(string::iterator is(result.end()-1);is>=result.begin();is--)
             b.push_back(*is-'0');
         t=(a.size()<b.size())?a:b;
         m=(a.size()<b.size())?b:a;
@@ -100,7 +100,7 @@ int main()
             *(c.end()-2)%=10;
         }
         result.clear();
-        for(ic=c.end()-1;ic>=c.begin();ic++)
+        for(ic=c.end()-1;ic>=c.begin();ic--)
             result.push_back(*ic+'0');
     }
     cout<<result<<endl;
