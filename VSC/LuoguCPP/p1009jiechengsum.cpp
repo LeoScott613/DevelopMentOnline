@@ -19,7 +19,7 @@ int main()
         int eat_i(i);
         while(eat_i)
         {
-            stri.push_back(eat_i%10+'0');
+            stri=(char)(eat_i%10+'0')+stri;
             eat_i/=10;
         }
         //musum*=stri;
@@ -59,15 +59,18 @@ int main()
         {
             if(*ic>9)
             {
-                for(int ixi(*ic);ixi;ixi/=10)
+                int ixi(*ic);
+                *ic%=10;
+                while(ixi)
                 {
-                    *(c.end()-1)=ixi%10;
                     ixi/=10;
+                    c.push_back(ixi%10);
                 }
+                ic=c.end()-1;
             }
             else musum.push_back(*ic+'0');
         }
-        cout<<musum<<' ';
+        //cout<<musum<<' ';
         multi.push_back(musum);
     }
     //1!,2!,...,n! completed
