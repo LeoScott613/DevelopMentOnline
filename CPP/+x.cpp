@@ -1,64 +1,43 @@
-#include <iostream>
 #include <string>
 #include <vector>
+#include <iostream>
 using namespace std;
 int main()
 {
     string s1,s2;
-    char sig;
-    cout<<"line by line"<<endl;
-    cin>>s1>>sig>>s2;
-    string::iterator is;
-    vector<int> a,b,t,m,result;
-    vector<int>::iterator ir,it,im;
-    for(is=s1.end()-1;is>=s1.begin();is--)
+    cin>>s1>>s2;
+    vector<int> a,b,c;
+    for(string::iterator is(s1.begin());is!=s1.end();is++)
         a.push_back(*is-'0');
-    for(is=s2.end()-1;is>=s2.begin();is--)
+    for(string::iterator is(s2.begin());is!=s2.end();is++)
         b.push_back(*is-'0');
-    if(sig=='+')
+    c.push_back(0);
+    vector<int>::iterator ia,ib,ic(c.begin());
+    vector<int>::difference_type i(0);
+    for(ia=a.end()-1;ia>=a.begin();ia--)
     {
-        t=(a.size()<b.size())?a:b;
-        m=(a.size()<b.size())?b:a;
-        while(t.size()<m.size())
-            t.push_back(0);
-        for(it=t.begin(),im=m.begin();it!=t.end();it++,im++)
-            result.push_back(*it+*im);
-    }
-    else if(sig=='x')
-    {
-        result.push_back(0);
-        ir=result.begin();
-        vector<int>::difference_type i(0);
-        for(it=a.begin();it!=a.end();it++)
+        for(ib=b.end()-1;ib>=b.begin();ib--)
         {
-            for(im=b.begin();im!=b.end();im++)
+            *ic+=*ia**ib;
+            if(ic==c.end()-1)
             {
-                *ir+=*it**im;
-                if(ir==result.end()-1)
-                {
-                    result.push_back(0);
-                    ir=result.end()-1;
-                }
-                else ir++;
+                c.push_back(0);
+                ic=c.end()-1;
             }
-            i++;
-            ir=result.begin()+i;
+            else ic++;
         }
+        i++;
+        ic=c.begin()+i;
     }
-    else 
-    {
-        cout<<"error"<<endl;
-        return -1;
-    }
-    for(ir=result.end()-1;*ir==0;ir--)
-        ir=result.erase(ir)-1;
-    for(ir=result.begin();ir!=result.end()-1;ir++)
-        if(*ir>9)
+    for(ic=c.end()-1;*ic==0&&ic!=c.begin();ic--)
+        ic=c.erase(ic);
+    for(ic=c.begin();ic!=c.end()-1;ic++)
+        if(*ic>9)
         {
-            *(ir+1)+=*ir/10;
-            *ir%=10;
+            *(ic+1)+=*ic/10;
+            *ic%=10;
         }
-    for(ir=result.end()-1;ir>=result.begin();ir--)
-        cout<<*ir;
+    for(ic=c.end()-1;ic>=c.begin();ic--)
+        cout<<*ic;
     return 0;
 }
