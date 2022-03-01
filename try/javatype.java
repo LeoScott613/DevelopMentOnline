@@ -4,7 +4,10 @@ public class javatype {
         double yes=114.514;
         double sqyes=Math.sqrt(yes);
         double sqrage=Math.sqrt(rage);
+        long lyes=Math.round(yes);
+        int iyes=(int) Math.round(yes);
         System.out.println(sqyes);
         System.out.println(sqrage);
+        System.out.println(lyes);
     }
 }

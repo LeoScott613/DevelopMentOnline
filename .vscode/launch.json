@@ -7,6 +7,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch P1980",
+            "request": "launch",
+            "mainClass": "P1980",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch P5720",
+            "request": "launch",
+            "mainClass": "P5720",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch input",
+            "request": "launch",
+            "mainClass": "input",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch javatype",
             "request": "launch",
             "mainClass": "javatype",
