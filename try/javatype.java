@@ -1,0 +1,10 @@
+public class javatype {
+    public static final int rage=114514;
+    public static void main(String[] args) {
+        double yes=114.514;
+        double sqyes=Math.sqrt(yes);
+        double sqrage=Math.sqrt(rage);
+        System.out.println(sqyes);
+        System.out.println(sqrage);
+    }
+}

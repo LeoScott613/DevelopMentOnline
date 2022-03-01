@@ -5,19 +5,32 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "Launch javatype",
+            "request": "launch",
+            "mainClass": "javatype",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch helloworld",
+            "request": "launch",
+            "mainClass": "helloworld",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
         {
             "name": "(gdb) Launch",
-            "type": "cppdbg",//配置类型，只能为cppdbg
-            "request": "launch",//请求配置类型，可以为launch（启动）或attach（附加）
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",//调试程序的路径名称
-            "args": [],//调试传递参数
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,//true显示外置的控制台窗口，false显示内置终端
+            "externalConsole": true,
             "MIMode": "gdb",
-            "miDebuggerPath": "D:\\Development\\MinGW64\\bin\\gdb.exe", 
+            "miDebuggerPath": "D:\\Development\\MinGW64\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -25,7 +38,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "task",//调试前执行的任务，就是之前配置的tasks.json中的label字段
+            "preLaunchTask": "task"
         }
     ]
 }
