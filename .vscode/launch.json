@@ -7,6 +7,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch clas",
+            "request": "launch",
+            "mainClass": "clas",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch P5726",
             "request": "launch",
             "mainClass": "P5726",
