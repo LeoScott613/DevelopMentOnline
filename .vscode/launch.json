@@ -7,6 +7,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch P1980_2",
+            "request": "launch",
+            "mainClass": "P1980_2",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch clas",
             "request": "launch",
             "mainClass": "clas",
