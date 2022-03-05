@@ -7,6 +7,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch conn2",
+            "request": "launch",
+            "mainClass": "conn2",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch connector",
+            "request": "launch",
+            "mainClass": "connector",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch q",
             "request": "launch",
             "mainClass": "q",

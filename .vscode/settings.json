@@ -14,5 +14,9 @@
         "vector": "cpp",
         "initializer_list": "cpp",
         "regex": "cpp"
-    }
+    },
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "jarlib/mysql-connector-java-8.0.28.jar"
+    ]
 }
