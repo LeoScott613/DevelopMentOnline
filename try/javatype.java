@@ -6,6 +6,7 @@ public class javatype {
         double sqrage=Math.sqrt(rage);
         long lyes=Math.round(yes);
         int iyes=(int) Math.round(yes);
+        int[] q=new int[10];
         System.out.println(sqyes);
         System.out.println(sqrage);
         System.out.println(lyes);
