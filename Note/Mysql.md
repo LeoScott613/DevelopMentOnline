@@ -15,4 +15,4 @@ DROP COLUMN
 MODIFY COLUMN  *change the type of certain column*  
 RENAME COLUMN *old_column_name* TO *new_column_name*  
 
-与mysql连接需要connector/j的jar包  
+与mysql连接需要connector/j的jar包，放在Referenced Libraries中  

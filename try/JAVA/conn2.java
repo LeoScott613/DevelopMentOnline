@@ -1,3 +1,4 @@
+package JAVA;
 import java.sql.*;
 
 public class conn2 {

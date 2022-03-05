@@ -1,3 +1,4 @@
+package JAVA;
 public class javatype {
     public static final int rage=114514;
     public static void main(String[] args) {
