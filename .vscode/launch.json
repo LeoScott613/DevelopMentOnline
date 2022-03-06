@@ -7,6 +7,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch trial",
+            "request": "launch",
+            "mainClass": "JAVA.trial",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch c4",
+            "request": "launch",
+            "mainClass": "JAVA.c4",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch connector3",
+            "request": "launch",
+            "mainClass": "JAVA.connector3",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch conn2",
             "request": "launch",
             "mainClass": "conn2",
