@@ -7,6 +7,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch exception5",
+            "request": "launch",
+            "mainClass": "JAVA.exception5",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch exception4",
+            "request": "launch",
+            "mainClass": "JAVA.exception4",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch exception2",
+            "request": "launch",
+            "mainClass": "JAVA.exception2",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch exception1",
+            "request": "launch",
+            "mainClass": "JAVA.exception1",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch trial",
             "request": "launch",
             "mainClass": "JAVA.trial",
