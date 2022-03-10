@@ -7,6 +7,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch read",
+            "request": "launch",
+            "mainClass": "JAVA.read",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch c5",
             "request": "launch",
             "mainClass": "JAVA.c5",
