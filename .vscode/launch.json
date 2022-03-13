@@ -7,6 +7,69 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch subclas",
+            "request": "launch",
+            "mainClass": "subclas",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch subclas",
+            "request": "launch",
+            "mainClass": "JAVA.variety.single.subclas",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch subclas",
+            "request": "launch",
+            "mainClass": "JAVA.variety.subclas",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch dater",
+            "request": "launch",
+            "mainClass": "JAVA.variety.dater",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch operating",
+            "request": "launch",
+            "mainClass": "JAVA.OrderSystem.operating",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch linkobj",
+            "request": "launch",
+            "mainClass": "JAVA.linkobj",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch obj",
+            "request": "launch",
+            "mainClass": "JAVA.obj",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch intcollection",
+            "request": "launch",
+            "mainClass": "JAVA.intcollection",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch jihe",
+            "request": "launch",
+            "mainClass": "JAVA.jihe",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch read",
             "request": "launch",
             "mainClass": "JAVA.read",

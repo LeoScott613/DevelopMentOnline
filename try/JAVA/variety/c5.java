@@ -1,4 +1,4 @@
-package JAVA;
+package JAVA.variety;
 import java.sql.*;
 import java.util.*;
 public class c5 {
