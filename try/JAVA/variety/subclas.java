@@ -3,9 +3,11 @@ package JAVA.variety;
 public class subclas {
     public static void main(String[] args) throws privateExp{
         up aUp=new up(1926);
-        sub aSub=new sub(114514);
+        sub aSub=new sub(0);
+        System.out.println(aSub.getAge());
         aSub.setAge(1926);
         //System.out.println(aUp.getSecret());     no
+        System.out.println(aSub.getAge());
         aSub.getSecret();
     }
 }
@@ -22,6 +24,7 @@ class up {
     }
     public void setAge(int age) {
         Age=age;
+        getSecret();  //ok in this class
     }
     private String getSecret() {
         return Secret;
@@ -35,7 +38,7 @@ class sub extends up {
     //can I redefine the method of the superclass?
     public void setAge(int age) {
         /*Age=age;*/   //Age is private in the superclass
-        super.setAge(114514);
+        super.setAge(age);
     }
     public void getSecret() throws privateExp {
         /*String s=super.getSecret();*/    //.getSecret in the superclass is private
