@@ -1,3 +1,0 @@
-# 与编译相关的用语和过程以及技术
-## The difference between build and compile
-compilation在具体的编译过程中实现的功能是将高级语言转成汇编语言。通俗语境下的意思是将高级语言转成可执行文件。build也是如此，但是在一个工程中，compile通常只针对单个文件而build的意思是对整个工程进行编译，打包等额外工作

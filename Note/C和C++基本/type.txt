@@ -6,4 +6,4 @@ double result(60);
 int rec;
 rec=(int)result%60;     //rec==0
 
-intç±»å‹å˜é‡/intç±»å‹å˜é‡=intå€¼
+intÀàĞÍ±äÁ¿/intÀàĞÍ±äÁ¿=intÖµ

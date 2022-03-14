@@ -1,0 +1,6 @@
+cmath or math.h
+sqrt(x);     //返回值是double 类型的
+pow(x,n);
+floor(x);  //取整数部分，直接舍弃小数部分     floor(3.9)==3
+ceil(x);    //取不小于该数的最小整数                 ceil(3.1)==4
+abs(x);       //取绝对值
