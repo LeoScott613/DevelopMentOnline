@@ -11,8 +11,8 @@ Servlet并不是作为服务器的可执行程序直接运行的，而是在服务器中的**Web容器**中运行
 5. Servlet处理
 6. Web容器将处理后的内容返回给服务器
 ## Servlet的功能实现
-Servlet属于非标准库函数，所以在编译servlet程序的时候，是需要连接Servlet-api.jar这个库的。如果servlet还要与数据库连接，则也需要数据库连接库的jar包。使用javac编译servlet源代码时添加-cp参数（*-cp参数后面跟的是地址，但是地址后面还需要加上具体的文件名或者通配符*）。其实，本质上就是一个.java源文件产生.class文件的过程，只不过产生的这个class属于一个servlet，毕竟编写的时候是继承了HttpServlet类的   
-很简短的一个Servlet，但是包含了一个servlet必备的要素  
+Servlet属于非标准库函数，所以在编译servlet程序的时候，是需要连接Servlet-api.jar这个库的。如果servlet还要与数据库连接，则也需要数据库连接库的jar包。使用javac编译servlet源代码时添加-cp参数（*-cp参数后面跟的是地址，但是地址后面还需要加上具体的文件名或者通配符*）。其实，**本质上就是一个.java源文件产生.class文件的过程**，只不过产生的这个class属于一个servlet，毕竟编写的时候是继承了HttpServlet类的   
+很简短的一个Servlet，但是包含了一个servlet必备的要素，体现了servlet这个java类如何进行网络响应  
 ```java
 import java.io.*;
 import javax.servlet.*;
