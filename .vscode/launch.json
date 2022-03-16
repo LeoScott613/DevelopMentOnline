@@ -7,6 +7,69 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch connector",
+            "request": "launch",
+            "mainClass": "JAVA.variety.connector",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch cityServ",
+            "request": "launch",
+            "mainClass": "cityServ",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch cityServ",
+            "request": "launch",
+            "mainClass": "JAVA.servlet.cityServ",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch multi_thread_collection",
+            "request": "launch",
+            "mainClass": "JAVA.variety.multi_thread_collection",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch collection",
+            "request": "launch",
+            "mainClass": "JAVA.variety.collection",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch imple",
+            "request": "launch",
+            "mainClass": "JAVA.variety.imple",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch mutli_thread",
+            "request": "launch",
+            "mainClass": "JAVA.variety.mutli_thread",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch muti_thread",
+            "request": "launch",
+            "mainClass": "JAVA.variety.muti_thread",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch connector_prac",
+            "request": "launch",
+            "mainClass": "JAVA.variety.connector_prac",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch exp6",
             "request": "launch",
             "mainClass": "JAVA.variety.exp6",

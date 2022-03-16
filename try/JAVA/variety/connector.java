@@ -10,9 +10,11 @@ public class connector {
         Connection conn=DriverManager.getConnection("jdbc:mysql:///mydb", u, p);//get connection to the database
         Statement stat=conn.createStatement();
         ResultSet rs=stat.executeQuery("SELECT * FROM TB2");
+        ResultSetMetaData rms=rs.getMetaData();
+        System.out.println(rms.getColumnCount());
         while(rs.next())
         {
-            System.out.println(rs.getString("CHUNK"));
+            System.out.println(rs.getString(3));
         }
     }
 }
