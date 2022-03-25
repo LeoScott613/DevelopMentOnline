@@ -7,6 +7,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch tostring",
+            "request": "launch",
+            "mainClass": "JAVA.variety.tostring",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch bookshelf_manager",
+            "request": "launch",
+            "mainClass": "JAVA.variety.bookshelf_manager",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch connector",
             "request": "launch",
             "mainClass": "JAVA.variety.connector",

@@ -11,10 +11,10 @@ public class server extends HttpServlet {
         String name=request.getParameter("name"); 
         String method=request.getMethod();
         if(name.equals("(default)")) {
-            response.sendError(400,"ä½ èƒ½ä¸èƒ½ä¿®æ”¹ä¸€ä¸‹default(æ€’)"); 
+            response.sendError(400,"ÄãÄÜ²»ÄÜĞŞ¸ÄÒ»ÏÂdefault(Å­)"); 
         }
         else if(name.equals("(break_server)"))
-            response.sendError(503,"è¶…è´Ÿè·äº†å‘¢");
+            response.sendError(503,"³¬¸ººÉÁËÄØ");
         else
             out.println("<html><meta charset=\"UTF-8\"><title>response</title><body><p>Method:"+method+"</p><p>Parameter name="+name+"</p></body></html>");
     }
