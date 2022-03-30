@@ -1,4 +1,3 @@
-package JAVA.variety;
 import java.util.Iterator;
 import java.util.LinkedList;
 public class collection {

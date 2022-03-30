@@ -1,5 +1,3 @@
-package JAVA.variety;
-
 public class subclas {
     public static void main(String[] args) throws privateExp{
         up aUp=new up(1926);

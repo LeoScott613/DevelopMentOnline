@@ -1,5 +1,3 @@
-package JAVA.variety;
-
 public class mutli_thread {
     public static void main(String args[]) throws InterruptedException {
         ThreadL thr=new ThreadL();

@@ -1,4 +1,4 @@
-package JAVA.variety;
+
 
 public class exp6 {
     public static void main(String[] args) throws RuntimeException{

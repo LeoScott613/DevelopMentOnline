@@ -1,4 +1,3 @@
-package JAVA.variety;
 import java.sql.*;
 public class connector_prac {
     public static final String user="root";

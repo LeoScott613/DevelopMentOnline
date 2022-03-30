@@ -1,4 +1,3 @@
-package JAVA.variety;
 import java.lang.Object;
 public class tostring {
     public static void main(String[] args) {

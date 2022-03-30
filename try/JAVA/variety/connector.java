@@ -1,4 +1,4 @@
-package JAVA.variety;
+
 import java.sql.*;
 
 public class connector {
