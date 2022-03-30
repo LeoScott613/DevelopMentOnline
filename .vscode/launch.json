@@ -7,6 +7,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch statik",
+            "request": "launch",
+            "mainClass": "statik",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
+            "name": "Launch break_capsule",
+            "request": "launch",
+            "mainClass": "break_capsule",
+            "projectName": "DevelopMentOnline_e683f3a1"
+        },
+        {
+            "type": "java",
             "name": "Launch tostring",
             "request": "launch",
             "mainClass": "JAVA.variety.tostring",
