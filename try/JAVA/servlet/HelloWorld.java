@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 public class HelloWorld extends HttpServlet {
     protected void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html;charset:UFT-8");
+        response.setContentType("text/html;charset=UFT-8");
         PrintWriter out=response.getWriter();
         String name=request.getParameter("name");
         out.println(

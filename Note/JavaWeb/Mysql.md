@@ -18,6 +18,25 @@ CREATE TABLE table_name (
    ....
 );
 ```
+在创建新表的时候可以添加主键约束等约束条件
+```SQL
+CREATE TABLE table_name (
+    column1 datatype PRIMARY KEY,
+    column2 datatype,
+    ...
+); //方式1
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+    PRIMARY KEY (column_name);
+); //方式2
+```
+即使表已经存在也可以添加主键约束
+```SQL
+ALTER TALBE table_name
+ADD PRIMARY KEY (column_name);
+```
 然后往表中插入值
 ```SQL
 INSERT INTO table_name (column,column...)
@@ -42,6 +61,24 @@ MODIFY COLUMN  *change the type of certain column*
 RENAME COLUMN *old_column_name* TO *new_column_name*  
 
 与mysql连接需要connector/j的jar包，放在Referenced Libraries中(*VSCode*)  
+
+## MySQL事务
+事务(transaction)是访问并可能操作各种数据项的一个数据库操作序列，这些操作是一个不可分割的。也就是说，一套事务中的操作要么都执行，要么都不执行。  
+举例来说，进行转账涉及两个数据库操作
+1. 从被转账户划出款项
+2. 将款项划入目标账户
+
+这两个操作就可以看作一个**事务**，因为二者要么都执行要么都不执行，任何一个没有执行都会导致问题  
+
+一个事务具备**ACID特性**：
+1. 原子性(Atomicity)：事务中的全部操作在数据库中是不可分割的，要么全部完成，要么全部不执行
+2. 一致性(Consistency)：几个并行执行的事务，其执行结果必须与按某一顺序 串行执行的结果相一致
+3. 隔离性(Isolation)：事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的
+4. 持久性(Durability):对于任意已提交事务，系统必须保证该事务对数据库的改变不被丢失，即使数据库出现故障
+
+事务的ACID特性由关系数据库系统(DBMS)来实现。比如，DBMS采用**日志**来保证事务的原子性、一致性和持久性。**日志记录了事务对数据库所作的更新**，如果某个事务在执行过程中发生错误，就可以根据日志撤销事务对数据库已做的更新，使得数据库回滚到执行事务前的初始状态。  
+对于事务的隔离性，DBMS是采用**锁机制**来实现的。当多个事务同时更新数据库中相同的数据时，只允许持有锁的事务能更新该数据，其他事务必须等待，直到前一个事务释放了锁，其他事务才有机会更新该数据。  
+*但锁机制也会导致死锁这种问题*  
 
 ## MySQL范式
 MySQL范式指的是在设计数据库时应该遵守的原则，一般有三个，称为**三大范式**。  
