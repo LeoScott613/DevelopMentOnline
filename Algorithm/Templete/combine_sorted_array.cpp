@@ -7,10 +7,15 @@ int main()
     int i(0), j(0), k(0);
     while (i < 14)
     {
-        if (k > 7 || a[j] <= b[k])
-            combination[i++] = a[j++];
-        else if (j > 5 || b[k] < a[j])
-            combination[i++] = b[k++];
+        if(k>=8)
+            combination[i++]=a[j];
+        else if(j>=6)
+            combination[i++]=b[k];
+        
+        else if(a[j]<=b[k])
+            combination[i++]=a[j];
+        else if(b[k]<a[j])
+            combination[i++]=b[k];
     }
     for (i = 0; i < 14; i++)
         cout << combination[i] << ' ';
