@@ -7,14 +7,24 @@ condition¿ÉÒÔÊÇÌõ¼þ±í´ïÊ½£¬¿ÉÒÔÊ¹ÓÃµÄ·ûºÅÓÐ=,<,>,<=,>=,!=¡£Ìõ¼þ±í´ïÊ½Ö®¼ä¿ÉÒÔÓÃÂ
 **Ç¿µ÷£ºÒ»¸ö×Ö¶ÎµÄÖµ²»ÄÜºÍNULL½øÐÐ±È½Ï£¬¼´NAME=NULLÕâ¸öÌõ¼þ±í´ïÊ½ÊÇ²»¶ÔµÄ£¬ÕýÈ·µÄÓ¦¸ÃÊÇNAME IS NULL»òÕßNAME IS NOT NULL**
 ## Ä£ºý²éÑ¯
 ÓÃWHEREÌí¼ÓÒ»Ð©**Ä£ºýµÄ**²éÑ¯µÄÌõ¼þ  
-Ê¹ÓÃÍ¨Åä·ûÀ´Ìí¼ÓÄ£ºý²éÑ¯Ìõ¼þ£¬Í¨Åä·ûÓÐ*,%,-¡£ËüÃÇ·Ö±ð±íÊ¾**Æ¥ÅäËùÓÐ£¬¿ÉÆ¥Åä¶à¸ö×Ö·û£¬Ö»¿ÉÆ¥Åäµ¥¸ö×Ö·û**¡£
+Ê¹ÓÃÍ¨Åä·ûÀ´Ìí¼ÓÄ£ºý²éÑ¯Ìõ¼þ£¬Í¨Åä·ûÓÐ*,%,-¡£ËüÃÇ·Ö±ð±íÊ¾**ËùÓÐ×Ö·û£¬¶à¸öÈÎÒâ×Ö·û£¬µ¥¸öÈÎÒâ×Ö·û**¡£\*ºÍ%µÄ×÷ÓÃ¶¼±È½ÏºÃÀí½â¡£_µÄÒâË¼ÊÇ"*Õâ¸öÎ»ÖÃÃ»ÓÐÖ¸¶¨×Ö·û£¬ËùÒÔÖ»ÒªÂú×ãÆäËûÎ»ÖÃµÄÒªÇóµÄ£¬²»¹ÜÕâ¸öÎ»ÖÃµÄ×Ö·ûÊÇÊ²Ã´¶¼ÊôÓÚÎÒÒªµÄ·¶Î§*"¡£
 
 ```SQL
+-- »ù´¡²éÑ¯
 SELECT * FROM BOOKSHELF;
 SELECT ID FROM BOOKSHELF;
 
+-- Ìõ¼þ²éÑ¯
 SELECT * FROM BOOKSHELF WHERE ID=1;
 SELECT * FROM BOOKSHELF WHERE ID>1;
 
+-- Ä£ºýÌõ¼þ²éÑ¯
 SELECT * FROM BOOKSHELF WHERE NAME LIKE 'C++%';
+SELECT * FROM BOOKSHELF WHERE NAME LIKE '_++%';
+SELECT * FROM BOOKSHELF WHERE NAME LIKE '% %';--²éÑ¯ÊéÃû´ø¿Õ¸ñµÄ×Ö¶Î
 ```
+
+>**·´Ë¼**  
+LIKEÆðµ½ÔËËã·ûµÄ×÷ÓÃÂð£¿  
+SELECTÕæµÄÊÇ×î¸ßÐ§µÄ²éÑ¯·½Ê½Âð£¿  
+ÄãÆ½³£Ê¹ÓÃ²éÑ¯µÄ³¡¾°ÓÐÄÄÐ©£¿  
