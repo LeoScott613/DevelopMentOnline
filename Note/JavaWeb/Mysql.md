@@ -24,18 +24,25 @@ CREATE TABLE table_name (
     column1 datatype PRIMARY KEY,
     column2 datatype,
     ...
-); //方式1
+); --方式1
 CREATE TABLE table_name (
     column1 datatype,
     column2 datatype,
     ...
     PRIMARY KEY (column_name);
-); //方式2
+); --方式2
 ```
 即使表已经存在也可以添加主键约束
 ```SQL
-ALTER TALBE table_name
-ADD PRIMARY KEY (column_name);
+ALTER TABLE table_name ADD PRIMARY KEY (column_name); --方式1
+ALTER TABLE BookShelf MODIFY ID INT PRIMARY KEY;--方式2，感觉没有方式1方便，因为方式2需要知道对应列的数据类型
+```
+当然也可以删除主键约束。有两种方式，一是在知道某一列是主键列时使用，第二种知道或者不知道都可以使用。
+```SQL
+-- 方式1
+ALTER TABLE BookShelf MODIFY ID INT;
+-- 方式2
+ALTER TABLE BookShelf DROP PRIMARY KEY;
 ```
 然后往表中插入值
 ```SQL
