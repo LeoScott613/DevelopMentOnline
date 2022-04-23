@@ -43,7 +43,6 @@ int jumpPosibi(int level) {
         notepad.insert(newNote);
         endofmap=notepad.end();
     }
-
     return capsuleA+capsuleB;
 }
 int main() {
