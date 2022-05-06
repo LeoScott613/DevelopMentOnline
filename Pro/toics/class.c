@@ -3,23 +3,21 @@
  * @brief 这是一个需要深深反思的程序
  * @date 2022-05-06
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef struct singleClass { 
-	char name[20];
-	char classtime[20];
-	char position[20];
-	char date_time[20];
-	int realtime;
-}singleClass;
-typedef struct dateTime {
-	char *dtstart;
-	char *dtend;
-}dateTime;
-
+#include "headerman.h"
+int main(){
+	FILE *classFile=fopen("classTable.txt","r");
+	FILE *timeFile=fopen("timeTransed.txt","w");
+	if(classFile!=NULL)
+		while(!feof(classFile)) {
+			singleClass readbuff;
+			fscanf(classFile,"%s %s %s %s",readbuff.name,readbuff.classtime,readbuff.position,readbuff.date_time);
+			dateTime currentEvent=operation(readbuff.classtime,readbuff.date_time);
+			fprintf(timeFile,"%s %s %s %s\n",readbuff.name,readbuff.position,currentEvent.dtstart,currentEvent.dtend);
+		}
+	fclose(classFile);
+	fclose(timeFile);
+	return 0;
+}
 char *tstart(int sequence) {
 	static char time[10];
 	switch(sequence) {
@@ -62,6 +60,7 @@ dateTime operation(char classtime[],char datetime[]) {
 	int j,k;
 	for(j=k=0;j<8;j++,k++) 
 		(datetime[k]=='-')?(j--):(dtdate[j]=datetime[k]);
+	dtdate[8]='T';//at the end of the dtdate add an 'T'
 	//date operation
 
 	int oneClass;
@@ -95,17 +94,3 @@ dateTime operation(char classtime[],char datetime[]) {
 	//packup and return back
 }
 
-int main(){
-	FILE *classFile=fopen("classTable.txt","r");
-	FILE *timeFile=fopen("timeTransed.txt","w");
-	if(classFile!=NULL)
-		while(!feof(classFile)) {
-			singleClass readbuff;
-			fscanf(classFile,"%s %s %s %s",readbuff.name,readbuff.classtime,readbuff.position,readbuff.date_time);
-			dateTime currentEvent=operation(readbuff.classtime,readbuff.date_time);
-			fprintf(timeFile,"%s %s %s %s\n",readbuff.name,readbuff.position,currentEvent.dtstart,currentEvent.dtend);
-		}
-	fclose(classFile);
-	fclose(timeFile);
-	return 0;
-}

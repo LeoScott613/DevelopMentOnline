@@ -1,6 +1,6 @@
 # string
-string str;ÉùÃ÷ÁËÒ»¸östringÀàÐÍµÄ±äÁ¿Ö®ºó£¬Èç¹ûÃ»ÓÐ³õÊ¼»¯£¬Ä¬ÈÏ¹¹Ôìº¯Êý»á½«str³õÊ¼»¯Îª¿Õ×Ö·û´®¡£s.~string()¿ÉÒÔÉ¾³ýÕâ¸ö×Ö·û´®²¢ÊÍ·ÅÄÚ´æ¡£¶ÔÒ»¸öÓÐÄÚÈÝµÄ×Ö·û´®£¬Òª»ñÈ¡ËüµÄ³¤¶È£¬Ê¹ÓÃstd.length()»òÕßstr.size()¡£str.empty()¼ì²é×Ö·û´®ÊÇ·ñÎª¿Õ¡£ÔÚÊ¹ÓÃÍêÒ»¸ö×Ö·û´®Ö®ºó¿ÉÒÔÓÃstr.~string()É¾³ý¡£Èç¹ûÔÚÖ®ºó¶ÔÕâ¸ö×Ö·û´®½øÐÐÊä³ö²Ù×÷»á³öÏÖÂÒÂë  
-string¶ÔÏó¼¸ÖÖ³õÊ¼»¯·½Ê½
+string str;å£°æ˜Žäº†ä¸€ä¸ªstringç±»åž‹çš„å˜é‡ä¹‹åŽï¼Œå¦‚æžœæ²¡æœ‰åˆå§‹åŒ–ï¼Œé»˜è®¤æž„é€ å‡½æ•°ä¼šå°†stråˆå§‹åŒ–ä¸ºç©ºå­—ç¬¦ä¸²ã€‚s.~string()å¯ä»¥åˆ é™¤è¿™ä¸ªå­—ç¬¦ä¸²å¹¶é‡Šæ”¾å†…å­˜ã€‚å¯¹ä¸€ä¸ªæœ‰å†…å®¹çš„å­—ç¬¦ä¸²ï¼Œè¦èŽ·å–å®ƒçš„é•¿åº¦ï¼Œä½¿ç”¨std.length()æˆ–è€…str.size()ã€‚str.empty()æ£€æŸ¥å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©ºã€‚åœ¨ä½¿ç”¨å®Œä¸€ä¸ªå­—ç¬¦ä¸²ä¹‹åŽå¯ä»¥ç”¨str.~string()åˆ é™¤ã€‚å¦‚æžœåœ¨ä¹‹åŽå¯¹è¿™ä¸ªå­—ç¬¦ä¸²è¿›è¡Œè¾“å‡ºæ“ä½œä¼šå‡ºçŽ°ä¹±ç   
+stringå¯¹è±¡å‡ ç§åˆå§‹åŒ–æ–¹å¼
 ```cpp
 string str("......");
 string stt(str);
@@ -8,7 +8,7 @@ string sty(6,'.');//it should be an char
 string stu(str,2);//start from 0
 string sti(str,2,4);//4 representing length you want to copy
 ```
-string¶ÔÏó¿ÉÒÔ½øÐÐµÄÒ»²¿·Ö²Ù×÷
+stringå¯¹è±¡å¯ä»¥è¿›è¡Œçš„ä¸€éƒ¨åˆ†æ“ä½œ
 ```cpp
 swap(str1,str2);
 str += "...";
@@ -18,8 +18,8 @@ str=str2 + str2;
 str.clear();
 str.~string();
 ```
-string¶ÔÏó¿ÉÒÔÓÃÏÂ±ê·ÃÎÊÒ²¿ÉÒÔÓÃµü´úÆ÷·ÃÎÊ  
-µü´úÆ÷·ÃÎÊ¼°Ïà¹Ø²Ù×÷
+stringå¯¹è±¡å¯ä»¥ç”¨ä¸‹æ ‡è®¿é—®ä¹Ÿå¯ä»¥ç”¨è¿­ä»£å™¨è®¿é—®  
+è¿­ä»£å™¨è®¿é—®åŠç›¸å…³æ“ä½œ
 ```cpp
 string::iterator iter=str.begin();
 iter++;
@@ -31,13 +31,13 @@ iter--;
 cout<<*iter<<endl;
 ```
 ---
-## ¶Ôgetline()µÄ×¨ÃÅ±Ê¼Ç  
-Õâ¸öº¯Êý½ÓÊÜÁ½¸ö²ÎÊý£¬Ò»¸öÊäÈëÁ÷¶ÔÏóºÍÒ»¸östring¶ÔÏó£¬±ÈÈç```getline(cin,str);```getline´ÓÊäÈëÁ÷µÄÏÂÒ»ÐÐ¶ÁÈ¡£¬²¢½«¶ÁÈ¡µÄÄÚÈÝ±£´æµ½string¶ÔÏóÖÐ**µ«ÊÇ²»°üº¬»»ÐÐ·û**£¬ÒòÎªgetline¶ÁÈ¡µ½»»ÐÐ·ûºó¾ÍÍ£Ö¹¶ÁÈ¡²¢·µ»ØÁË¡£¶ÔÓÚcinÀ´Ëµ£¬Ò²ÊÇ¶ÁÈëµ½»»ÐÐ·û¾ÍÍ£Ö¹²¢ÇÒ²»°üÀ¨»»ÐÐ·û¡£
+## å¯¹getline()çš„ä¸“é—¨ç¬”è®°  
+è¿™ä¸ªå‡½æ•°æŽ¥å—ä¸¤ä¸ªå‚æ•°ï¼Œä¸€ä¸ªè¾“å…¥æµå¯¹è±¡å’Œä¸€ä¸ªstringå¯¹è±¡ï¼Œæ¯”å¦‚```getline(cin,str);```getlineä»Žè¾“å…¥æµçš„ä¸‹ä¸€è¡Œè¯»å–ï¼Œå¹¶å°†è¯»å–çš„å†…å®¹ä¿å­˜åˆ°stringå¯¹è±¡ä¸­**ä½†æ˜¯ä¸åŒ…å«æ¢è¡Œç¬¦**ï¼Œå› ä¸ºgetlineè¯»å–åˆ°æ¢è¡Œç¬¦åŽå°±åœæ­¢è¯»å–å¹¶è¿”å›žäº†ã€‚å¯¹äºŽcinæ¥è¯´ï¼Œä¹Ÿæ˜¯è¯»å…¥åˆ°æ¢è¡Œç¬¦å°±åœæ­¢å¹¶ä¸”ä¸åŒ…æ‹¬æ¢è¡Œç¬¦ã€‚
 
 ---
-## ¶ÔstringstreamµÄ×¨ÃÅ±Ê¼Ç
-stringstreamÀàÐÍ°üº¬ÔÚ\<sstream>Í·ÎÄ¼þÖÐ¡£stringstreamÀàÐÍ¿ÉÒÔÓÃÀ´´æ´¢ÕûÊý×ª»¯Îª×Ö·û´®µÄ½á¹û»òÕß×÷Îª×ª»¯ÎªÕûÊýµÄ×Ö·û´®µÄ´æ´¢¶ÔÏó¡£Õâ¸öÀàÐÍµÄºÃ´¦ÊÇ·½±ã£¬È±µãÊÇ¶ÔstringstreamÀàÐÍ½øÐÐ¹¹ÔìºÍÎö¹¹»áºÄ·ÑCPU´óÁ¿Ê±¼ä¡£¶ÔÒ»¸östringstream½øÐÐÖØ¸´Ê¹ÓÃ¿ÉÒÔ½ÚÊ¡Ê±¼ä¡£Ö»ÒªÔÚÃ¿´ÎÐèÒªÔÙ´ÎÊ¹ÓÃstringstream¶ÔÏóÖ®Ç°½øÐÐclear()²Ù×÷¾Í¿ÉÒÔÁË¡£**ÔÚ¸´ÓÃstringstream¶ÔÏóÖ®Ç°Ò»¶¨Òª½øÐÐclear()²Ù×÷**  
-ÒÔÏÂÊÇint£¬stringstreamºÍstringÏà¹ØµÄ²Ù×÷¡£Ê¹ÓÃ<<ºÍ>>²Ù×÷·û
+## å¯¹stringstreamçš„ä¸“é—¨ç¬”è®°
+stringstreamç±»åž‹åŒ…å«åœ¨\<sstream>å¤´æ–‡ä»¶ä¸­ã€‚stringstreamç±»åž‹å¯ä»¥ç”¨æ¥å­˜å‚¨æ•´æ•°è½¬åŒ–ä¸ºå­—ç¬¦ä¸²çš„ç»“æžœæˆ–è€…ä½œä¸ºè½¬åŒ–ä¸ºæ•´æ•°çš„å­—ç¬¦ä¸²çš„å­˜å‚¨å¯¹è±¡ã€‚è¿™ä¸ªç±»åž‹çš„å¥½å¤„æ˜¯æ–¹ä¾¿ï¼Œç¼ºç‚¹æ˜¯å¯¹stringstreamç±»åž‹è¿›è¡Œæž„é€ å’Œæžæž„ä¼šè€—è´¹CPUå¤§é‡æ—¶é—´ã€‚å¯¹ä¸€ä¸ªstringstreamè¿›è¡Œé‡å¤ä½¿ç”¨å¯ä»¥èŠ‚çœæ—¶é—´ã€‚åªè¦åœ¨æ¯æ¬¡éœ€è¦å†æ¬¡ä½¿ç”¨stringstreamå¯¹è±¡ä¹‹å‰è¿›è¡Œclear()æ“ä½œå°±å¯ä»¥äº†ã€‚**åœ¨å¤ç”¨stringstreamå¯¹è±¡ä¹‹å‰ä¸€å®šè¦è¿›è¡Œclear()æ“ä½œ**  
+ä»¥ä¸‹æ˜¯intï¼Œstringstreamå’Œstringç›¸å…³çš„æ“ä½œã€‚ä½¿ç”¨<<å’Œ>>æ“ä½œç¬¦
 ```cpp
 int a(100);
 stringstream ss;
@@ -53,19 +53,19 @@ ss >> a;
 ```
 
 ---
-## ¸½¼Óputchar()ºÍgetchar()
-*ÆäÊµ¾ÍÊÇÊä³öÒ»¸ö×Ö·ûºÍ¶ÁÈëÒ»¸ö×Ö·ûorz*  
-**PS**:Êý×Ö1Óë×Ö·û1Ö®¼äµÄASCII¾àÀëÊÇ48( *¼´Ò»¸ö'0'* )
+## é™„åŠ putchar()å’Œgetchar()
+*å…¶å®žå°±æ˜¯è¾“å‡ºä¸€ä¸ªå­—ç¬¦å’Œè¯»å…¥ä¸€ä¸ªå­—ç¬¦orz*  
+**PS**:æ•°å­—1ä¸Žå­—ç¬¦1ä¹‹é—´çš„ASCIIè·ç¦»æ˜¯48( *å³ä¸€ä¸ª'0'* )
 ```cpp
 char c;
 c = getchar();
 putchar(c);
 ```
-ÐèÒª×¢ÒâµÄÊÇ```getchar()»á¶ÁÈë»Ø³µºÍ¿Õ¸ñµÈ×Ö·û```¡£Èç¹ûÔÚÊäÈë×Ö·ûÇ°ÓÐÊý×ÖµÄÊäÈë²¢ÇÒ»»ÐÐÁË£¬´ËÊ±Ê¹ÓÃgetchar()»á½«»»ÐÐ¶Á½ø³ÌÐò(ÒòÎªÕâ¸ö»»ÐÐ·û´æÔÚ»º³åÇøÀï)¡£ÌÈÈô²»ÏëÈÃ»»ÐÐ¸³¸ø³ÌÐòÖÐµÄ±äÁ¿£¬¾Íµ¥¶ÀÓÃÒ»´Îgetchar()½«\n¶ÁÈ¡µô(µ«ÊÇÕâÒ²²»ÊÇ±£ÏÕµÄ×ö·¨£¬×îºÃÊÇ¹Ø×¢»º³åÇøµÄÇé¿ö)    
+éœ€è¦æ³¨æ„çš„æ˜¯```getchar()ä¼šè¯»å…¥å›žè½¦å’Œç©ºæ ¼ç­‰å­—ç¬¦```ã€‚å¦‚æžœåœ¨è¾“å…¥å­—ç¬¦å‰æœ‰æ•°å­—çš„è¾“å…¥å¹¶ä¸”æ¢è¡Œäº†ï¼Œæ­¤æ—¶ä½¿ç”¨getchar()ä¼šå°†æ¢è¡Œè¯»è¿›ç¨‹åº(å› ä¸ºè¿™ä¸ªæ¢è¡Œç¬¦å­˜åœ¨ç¼“å†²åŒºé‡Œ)ã€‚å€˜è‹¥ä¸æƒ³è®©æ¢è¡Œèµ‹ç»™ç¨‹åºä¸­çš„å˜é‡ï¼Œå°±å•ç‹¬ç”¨ä¸€æ¬¡getchar()å°†\nè¯»å–æŽ‰(ä½†æ˜¯è¿™ä¹Ÿä¸æ˜¯ä¿é™©çš„åšæ³•ï¼Œæœ€å¥½æ˜¯å…³æ³¨ç¼“å†²åŒºçš„æƒ…å†µ)    
    
-## ¼Ó·¨ÔËËã·û(ÔÚStringÀàÐÍÖÐµÄ¶¨Òå)
-+ÔËËã·ûÊÇ½«ÓÒ²Ù×÷Êýappendµ½×ó²Ù×÷Êý¡£ÓÃÕâ¸öÔËËã·û¿ÉÒÔ´ÓÒ»¸ö×Ö·û´®µÄ¿ªÍ·¶Ô×Ö·û´®½øÐÐ×·¼Ó¡£
+## åŠ æ³•è¿ç®—ç¬¦(åœ¨Stringç±»åž‹ä¸­çš„å®šä¹‰)
++è¿ç®—ç¬¦æ˜¯å°†å³æ“ä½œæ•°appendåˆ°å·¦æ“ä½œæ•°ã€‚ç”¨è¿™ä¸ªè¿ç®—ç¬¦å¯ä»¥ä»Žä¸€ä¸ªå­—ç¬¦ä¸²çš„å¼€å¤´å¯¹å­—ç¬¦ä¸²è¿›è¡Œè¿½åŠ ã€‚
 ```cpp
 str="Hello"+str;
 ```
-ÕâÑù¾ÍÊÇ´Ó¿ªÍ·×·¼ÓÒ»¸öÄÚÈÝÎª"Hello"µÄ×Ö·û´®¡£
+è¿™æ ·å°±æ˜¯ä»Žå¼€å¤´è¿½åŠ ä¸€ä¸ªå†…å®¹ä¸º"Hello"çš„å­—ç¬¦ä¸²ã€‚
