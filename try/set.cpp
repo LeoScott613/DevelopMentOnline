@@ -4,10 +4,11 @@ using namespace std;
 typedef set<int>::iterator sti;
 int main()
 {
-    int x(10);
-    set<int> sb;
-    sb.insert(x);
-    sti siter(sb.begin());
-    cout<<*siter<<endl;
+    set<char> kid;
+    string child="helloworld";
+    string::iterator ic=child.begin();
+    for(;ic!=child.end();ic++)
+        kid.insert(*ic);
+    cout<<*(kid.begin())<<endl;
     return 0;
 }

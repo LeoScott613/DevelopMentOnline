@@ -1,30 +1,32 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <set>
 using namespace std;
-unsigned long maxfind(vector<unsigned long> log);
 int main() {
     ios::sync_with_stdio(false);
-    vector<unsigned long> log,screen;
-    set<unsigned int> bigcimal;
-    set<unsigned int>::iterator ib;
-    unsigned long n;
+    vector<int> log,screen;
+    set<int> bigcimal;
+    set<int>::iterator ib;
+    int n;
     cin>>n;
-    for(unsigned long i(0);i<n;i++) {
-        unsigned long op,box;
+    for(int i(0);i<n;i++) {
+        int op,box;
         cin>>op;
-        if(op==0) {
+        if(op==0) {//add a box
             cin>>box;
             log.push_back(box);
             bigcimal.insert(box);
         }
-        else if(op==2) {
-            ib=bigcimal.end();
-            ib--;
-            screen.push_back(*ib);
+        else if(op==2) {//search for the heavist box, 0 as output when there is no box
+            if(log.size()==0)
+                screen.push_back(0);
+            else {
+                ib=bigcimal.end();
+                ib--;
+                screen.push_back(*ib);
+            }
         }
-        else if(op==1) {
+        else if(op==1) {//pop a box, ignored when there is no box
             if(log.size()>0) {
                 int last=*(log.end()-1);
                 log.erase(log.end()-1);
@@ -33,16 +35,9 @@ int main() {
             }
         }
     }
-    for(vector<unsigned long>::iterator is=screen.begin();is!=screen.end();is++)
+    for(vector<int>::iterator is=screen.begin();is!=screen.end();is++)
         cout<<*is<<endl;
     return 0;
-}
-unsigned long maxfind(vector<unsigned long> log) {
-    vector<unsigned long>::iterator il=log.begin();
-    unsigned long max=0;
-    sort(log.begin(),log.end());
-    max=*(log.end()-1);
-    return max;
 }
 /**
  * @bug track 1: program ends too soon
