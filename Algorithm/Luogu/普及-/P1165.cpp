@@ -1,3 +1,8 @@
+/**
+ * @file P1165.cpp
+ * @author Leo Scott
+ * @brief 仓库放箱子取箱子并找最大箱的重量，未查看题解并优化的版本
+ */
 #include <iostream>
 #include <vector>
 #include <set>

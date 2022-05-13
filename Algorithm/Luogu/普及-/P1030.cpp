@@ -1,11 +1,16 @@
+/**
+ * @file P1030.cpp
+ * @author Leo Scott
+ * @brief 给中序和后序遍历求先序遍历/未优化
+ */
 #include <iostream>
 #include <string>
 #include <set>
 using namespace std;
 typedef string::iterator spos;
-void dfs(string mid,string post) {
+void dfs(string mid,string post) {//为什么这个函数的参数是这两个
     char root=*(post.end()-1);//the root node
-    cout<<root;
+    cout<<root;//output it because it's prefix traverse
     spos i=mid.begin();
     for(;i<mid.end();i++) {
         if(*i==root)
@@ -34,10 +39,10 @@ void dfs(string mid,string post) {
         lchild_p.push_back(*safari);
     for(spos safari=postl;safari<post.end()-1;safari++)//why post.end()-1? 因为这个迭代器对应的是根节点
         rchild_p.push_back(*safari);
-    //cout<<"L:"<<lchild_p<<"R:"<<rchild_p<<' ';
-    if(lchild.size()>0)
+
+    if(lchild.size()>0)             //递归终止条件
         dfs(lchild,lchild_p);
-    if(rchild.size()>0)
+    if(rchild.size()>0)             //递归终止条件
         dfs(rchild,rchild_p);
 }
 int main() {
