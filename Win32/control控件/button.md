@@ -1,0 +1,2 @@
+The name of window class of a button is WC_BUTTON (constant). This name must be as a parameter passed to CreateWindowExA(), otherwise you can directly pass "BUTTON" as the same result.  
+To create a button, the style must have WS_VISIBLE  

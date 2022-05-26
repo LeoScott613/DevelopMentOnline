@@ -12,4 +12,5 @@ ssh
 scp
 pstool
 Linux
-·şÎñÆ÷
+Win32
+gcc(åŸç†)

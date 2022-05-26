@@ -2,7 +2,7 @@
 #include <tchar.h>
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int nCmdShow) {
-    WNDCLASS wc = {};
+    WNDCLASS wc = {};       //the {} is nessary with its initialization
 
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = hInstance;
@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
     HWND hwnd = CreateWindowEx(
     0,                              // Optional window styles.
     _T("hello"),                     // Window class
-    _T("First Windows Program"),    // Window text
+    _T("First Windows Program"),    // Window text   //title
     WS_OVERLAPPEDWINDOW,            // Window style
 
     // Size and position
@@ -51,10 +51,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     switch (uMsg)
     {
     case WM_DESTROY:
-        PostQuitMessage(0);
+        PostQuitMessage(0);   //发送一个WM_QUIT消息到窗口线程的消息队列中，GetMessage接收到，返回的值就是0，主函数的消息循环就会退出，之后就会退出应用程序
         return 0;
 
-    case WM_PAINT:
+    case WM_PAINT://这里只是用纯色绘制工作区
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hwnd, &ps);
