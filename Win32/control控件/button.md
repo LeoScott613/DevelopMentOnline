@@ -1,2 +1,3 @@
+button can send message to parent window and parent window can send message to button。当按钮被按下的时候，按钮会发送WM_COMMOND类型的message（但是不止这一种），并且会在wParam中携带按钮发送的notification的code和identifier，使用HIWORD宏和LOWORD宏对wParam进行处理分别获取两者  
 The name of window class of a button is WC_BUTTON (constant). This name must be as a parameter passed to CreateWindowExA(), otherwise you can directly pass "BUTTON" as the same result.  
 To create a button, the style must have WS_VISIBLE  

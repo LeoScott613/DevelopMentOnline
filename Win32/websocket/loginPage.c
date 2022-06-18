@@ -1,4 +1,5 @@
 #include "application.h"
+extern int butt;
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE prevhinstance,PSTR pstr,int ncmdshow) {
     WNDCLASS mainwin={};
     mainwin.lpfnWndProc=procit;
@@ -33,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE prevhinstance,PSTR pstr,int ncm
         0,
         WC_EDIT,
         NULL,
-        WS_VISIBLE | WS_CHILD | ES_PASSWORD,
+        WS_VISIBLE | WS_CHILD | WS_BORDER | ES_PASSWORD,
         password.x,password.y,password.width,password.height,
         mainhand,
         NULL,hInstance,NULL
@@ -42,7 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE prevhinstance,PSTR pstr,int ncm
         0,
         WC_EDIT,
         NULL,
-        WS_VISIBLE | WS_CHILD,
+        WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
         account.x,account.y,account.width,account.height,
         mainhand,
         NULL,hInstance,NULL
@@ -52,7 +53,23 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE prevhinstance,PSTR pstr,int ncm
     MSG message;
     while(GetMessage(&message,NULL,0,0)>0) {
         TranslateMessage(&message);
-        DispatchMessage(&message);
+        int retrieve=DispatchMessage(&message);
+        if(butt==114) {
+            char getline[20],getpass[20];
+            Edit_GetLine(acc_edit,0,getline,20);
+            Edit_GetLine(pass,0,getpass,20);
+            //system("@curl 119.91.251.9/imservice/content.weblhx> content.dat");//send network request
+
+            char remotemsg[100];
+            FILE *rmmsg=fopen("content.dat","r");
+            int t=0;
+            for(;!feof(rmmsg) && t<100;t++)
+                fscanf(rmmsg,"%c",remotemsg+t);
+            fclose(rmmsg);
+            MessageBox(NULL,remotemsg,_T("from server"),MB_OK);
+
+            butt=0;//reset
+        }
     }
 
     return 0;

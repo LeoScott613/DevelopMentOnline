@@ -1,4 +1,7 @@
 # WinApi编程
+## 前言
+有一些api需要额外链接库文件，这时候有两种方式可以选择，一种是```#pragma comment(lib,"comctl32.lib")```，另一种是gcc编译时使用-l编译参数链接库文件```gcc loginPage.c callback.c -lcomctl32```
+
 ## 机制
 消息机制
 绘制机制
