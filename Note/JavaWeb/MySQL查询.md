@@ -1,30 +1,30 @@
-#  ²éÑ¯
-## »ù´¡²éÑ¯
-Ö±½ÓÊ¹ÓÃSELECT FROM²»¶à¼Ó×¸Êö¡£
-## Ìõ¼þ²éÑ¯
-ÓÃWHEREÌí¼ÓÒ»Ð©**È·ÇÐµÄ**²éÑ¯µÄÌõ¼þ  
-condition¿ÉÒÔÊÇÌõ¼þ±í´ïÊ½£¬¿ÉÒÔÊ¹ÓÃµÄ·ûºÅÓÐ=,<,>,<=,>=,!=¡£Ìõ¼þ±í´ïÊ½Ö®¼ä¿ÉÒÔÓÃÂß¼­ÔËËã·ûÁ¬½ÓÆðÀ´¡£*Âß¼­µÄ×÷ÓÃÖ®Ò»¾ÍÊÇÁ¬½Ó*¡£Âß¼­ÔËËã·ûÓÐAND OR NOT  
-**Ç¿µ÷£ºÒ»¸ö×Ö¶ÎµÄÖµ²»ÄÜºÍNULL½øÐÐ±È½Ï£¬¼´NAME=NULLÕâ¸öÌõ¼þ±í´ïÊ½ÊÇ²»¶ÔµÄ£¬ÕýÈ·µÄÓ¦¸ÃÊÇNAME IS NULL»òÕßNAME IS NOT NULL**
-## Ä£ºý²éÑ¯
-ÓÃWHEREÌí¼ÓÒ»Ð©**Ä£ºýµÄ**²éÑ¯µÄÌõ¼þ  
-Ê¹ÓÃÍ¨Åä·ûÀ´Ìí¼ÓÄ£ºý²éÑ¯Ìõ¼þ£¬Í¨Åä·ûÓÐ*,%,-¡£ËüÃÇ·Ö±ð±íÊ¾**ËùÓÐ×Ö·û£¬¶à¸öÈÎÒâ×Ö·û£¬µ¥¸öÈÎÒâ×Ö·û**¡£\*ºÍ%µÄ×÷ÓÃ¶¼±È½ÏºÃÀí½â¡£_µÄÒâË¼ÊÇ"*Õâ¸öÎ»ÖÃÃ»ÓÐÖ¸¶¨×Ö·û£¬ËùÒÔÖ»ÒªÂú×ãÆäËûÎ»ÖÃµÄÒªÇóµÄ£¬²»¹ÜÕâ¸öÎ»ÖÃµÄ×Ö·ûÊÇÊ²Ã´¶¼ÊôÓÚÎÒÒªµÄ·¶Î§*"¡£
+#  æŸ¥è¯¢
+## åŸºç¡€æŸ¥è¯¢
+ç›´æŽ¥ä½¿ç”¨SELECT FROMä¸å¤šåŠ èµ˜è¿°ã€‚
+## æ¡ä»¶æŸ¥è¯¢
+ç”¨WHEREæ·»åŠ ä¸€äº›**ç¡®åˆ‡çš„**æŸ¥è¯¢çš„æ¡ä»¶  
+conditionå¯ä»¥æ˜¯æ¡ä»¶è¡¨è¾¾å¼ï¼Œå¯ä»¥ä½¿ç”¨çš„ç¬¦å·æœ‰=,<,>,<=,>=,!=ã€‚æ¡ä»¶è¡¨è¾¾å¼ä¹‹é—´å¯ä»¥ç”¨é€»è¾‘è¿ç®—ç¬¦è¿žæŽ¥èµ·æ¥ã€‚*é€»è¾‘çš„ä½œç”¨ä¹‹ä¸€å°±æ˜¯è¿žæŽ¥*ã€‚é€»è¾‘è¿ç®—ç¬¦æœ‰AND OR NOT  
+**å¼ºè°ƒï¼šä¸€ä¸ªå­—æ®µçš„å€¼ä¸èƒ½å’ŒNULLè¿›è¡Œæ¯”è¾ƒï¼Œå³NAME=NULLè¿™ä¸ªæ¡ä»¶è¡¨è¾¾å¼æ˜¯ä¸å¯¹çš„ï¼Œæ­£ç¡®çš„åº”è¯¥æ˜¯NAME IS NULLæˆ–è€…NAME IS NOT NULL**
+## æ¨¡ç³ŠæŸ¥è¯¢
+ç”¨WHEREæ·»åŠ ä¸€äº›**æ¨¡ç³Šçš„**æŸ¥è¯¢çš„æ¡ä»¶  
+ä½¿ç”¨é€šé…ç¬¦æ¥æ·»åŠ æ¨¡ç³ŠæŸ¥è¯¢æ¡ä»¶ï¼Œé€šé…ç¬¦æœ‰*,%,-ã€‚å®ƒä»¬åˆ†åˆ«è¡¨ç¤º**æ‰€æœ‰å­—ç¬¦ï¼Œå¤šä¸ªä»»æ„å­—ç¬¦ï¼Œå•ä¸ªä»»æ„å­—ç¬¦**ã€‚\*å’Œ%çš„ä½œç”¨éƒ½æ¯”è¾ƒå¥½ç†è§£ã€‚_çš„æ„æ€æ˜¯"*è¿™ä¸ªä½ç½®æ²¡æœ‰æŒ‡å®šå­—ç¬¦ï¼Œæ‰€ä»¥åªè¦æ»¡è¶³å…¶ä»–ä½ç½®çš„è¦æ±‚çš„ï¼Œä¸ç®¡è¿™ä¸ªä½ç½®çš„å­—ç¬¦æ˜¯ä»€ä¹ˆéƒ½å±žäºŽæˆ‘è¦çš„èŒƒå›´*"ã€‚
 
 ```SQL
--- »ù´¡²éÑ¯
+-- åŸºç¡€æŸ¥è¯¢
 SELECT * FROM BOOKSHELF;
 SELECT ID FROM BOOKSHELF;
 
--- Ìõ¼þ²éÑ¯
+-- æ¡ä»¶æŸ¥è¯¢
 SELECT * FROM BOOKSHELF WHERE ID=1;
 SELECT * FROM BOOKSHELF WHERE ID>1;
 
--- Ä£ºýÌõ¼þ²éÑ¯
+-- æ¨¡ç³Šæ¡ä»¶æŸ¥è¯¢
 SELECT * FROM BOOKSHELF WHERE NAME LIKE 'C++%';
 SELECT * FROM BOOKSHELF WHERE NAME LIKE '_++%';
-SELECT * FROM BOOKSHELF WHERE NAME LIKE '% %';--²éÑ¯ÊéÃû´ø¿Õ¸ñµÄ×Ö¶Î
+SELECT * FROM BOOKSHELF WHERE NAME LIKE '% %';--æŸ¥è¯¢ä¹¦åå¸¦ç©ºæ ¼çš„å­—æ®µ
 ```
 
->**·´Ë¼**  
-LIKEÆðµ½ÔËËã·ûµÄ×÷ÓÃÂð£¿  
-SELECTÕæµÄÊÇ×î¸ßÐ§µÄ²éÑ¯·½Ê½Âð£¿  
-ÄãÆ½³£Ê¹ÓÃ²éÑ¯µÄ³¡¾°ÓÐÄÄÐ©£¿  
+>**åæ€**  
+LIKEèµ·åˆ°è¿ç®—ç¬¦çš„ä½œç”¨å—ï¼Ÿ  
+SELECTçœŸçš„æ˜¯æœ€é«˜æ•ˆçš„æŸ¥è¯¢æ–¹å¼å—ï¼Ÿ  
+ä½ å¹³å¸¸ä½¿ç”¨æŸ¥è¯¢çš„åœºæ™¯æœ‰å“ªäº›ï¼Ÿ  

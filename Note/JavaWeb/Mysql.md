@@ -1,15 +1,15 @@
 # MySQL
-***��Ҫ����¼���û������룬URL��CJ***  
+***重要：登录，用户，密码，URL，CJ***  
 
 ## OPERATION
-����һ�����û����޸��û�����
+建立一个新用户和修改用户密码
 ```SQL
 CREATE USER 'username'@'host' IDENTIFIED BY 'password';
 SET PASSWORD FOR 'username'@'host'='PASSWORD';
 ```
-�û���ص���Ϣ�ᱻ������MySQL.USER���С�user ���� MySQL ������Ҫ��һ��Ȩ�ޱ���������¼�������ӵ����������˺���Ϣ����Ҫע����ǣ��� user �������õ�����Ȩ�޶���ȫ�ּ��ģ��������������ݿ⡣��������й��ڸ����û�Ȩ�޵���Ϣ���й�Ȩ�޵��������ù̶��ĸ�ʽ����```'*command*_priv'```�������Ÿ��û���û��ִ��ĳ��command��Ȩ�ޡ�*��Щ�е�����������enum('N','Y')*�����Ҫ�޸�Ȩ�ޣ�����ʹ�� GRANT���Ϊ�û�����һЩȨ�ޣ�Ҳ����ͨ�� UPDATE������ user���ķ�ʽ������Ȩ��  
+用户相关的信息会被保存在MySQL.USER表中。user 表是 MySQL 中最重要的一个权限表，用来记录允许连接到服务器的账号信息。需要注意的是，在 user 表里启用的所有权限都是全局级的，适用于所有数据库。这个表中有关于各个用户权限的信息。有关权限的列名采用固定的格式，即```'*command*_priv'```，代表着该用户有没有执行某个command的权限。*这些列的数据类型是enum('N','Y')*。如果要修改权限，可以使用 GRANT语句为用户赋予一些权限，也可以通过 UPDATE语句更新 user表的方式来设置权限  
 
-����һ���±�
+建立一个新表
 ```SQL
 CREATE TABLE table_name (
     column1 datatype,
@@ -18,85 +18,85 @@ CREATE TABLE table_name (
    ....
 );
 ```
-�ڴ����±���ʱ�������������Լ����Լ������
+在创建新表的时候可以添加主键约束等约束条件
 ```SQL
 CREATE TABLE table_name (
     column1 datatype PRIMARY KEY,
     column2 datatype,
     ...
-); --��ʽ1
+); --方式1
 CREATE TABLE table_name (
     column1 datatype,
     column2 datatype,
     ...
     PRIMARY KEY (column_name);
-); --��ʽ2
+); --方式2
 ```
-��ʹ���Ѿ�����Ҳ������������Լ��
+即使表已经存在也可以添加主键约束
 ```SQL
-ALTER TABLE table_name ADD PRIMARY KEY (column_name); --��ʽ1
-ALTER TABLE BookShelf MODIFY ID INT PRIMARY KEY;--��ʽ2���о�û�з�ʽ1���㣬��Ϊ��ʽ2��Ҫ֪����Ӧ�е���������
+ALTER TABLE table_name ADD PRIMARY KEY (column_name); --方式1
+ALTER TABLE BookShelf MODIFY ID INT PRIMARY KEY;--方式2，感觉没有方式1方便，因为方式2需要知道对应列的数据类型
 ```
-��ȻҲ����ɾ������Լ���������ַ�ʽ��һ����֪��ĳһ����������ʱʹ�ã��ڶ���֪�����߲�֪��������ʹ�á�
+当然也可以删除主键约束。有两种方式，一是在知道某一列是主键列时使用，第二种知道或者不知道都可以使用。
 ```SQL
--- ��ʽ1
+-- 方式1
 ALTER TABLE BookShelf MODIFY ID INT;
--- ��ʽ2
+-- 方式2
 ALTER TABLE BookShelf DROP PRIMARY KEY;
 ```
-Ȼ�������в���ֵ
+然后往表中插入值
 ```SQL
 INSERT INTO table_name (column,column...)
 VALUES (value,value...),(value,value,...),...;
 ```
-**PS:�ڶ��е�values�м�'s'������ÿһ��ֵ�Ƕ�Ӧָ�����в����**
+**PS:第二行的values有加's'，并且每一个值是对应指定的列插入的**
 
 ---
 
-��¼MySQLʹ�õ�����:mysql -u *username* -p  
-��װʱ���Զ�����MYSQL SHELL�Ļ�������  
-mysql.exe����mysql server\bin��ʹ��mysql����ʱ����������Path��Ҫ����mysql server\bin��  
-����TABLE��Ҫ��DATABASE����������Ҫ����DB���ܴ�������������֮ǰҪUSE *database_name*.Ҳ������������ʾ�������Ӳ�����������Ӧ�����ݿ�  
+登录MySQL使用的命令:mysql -u *username* -p  
+安装时会自动添加MYSQL SHELL的环境变量  
+mysql.exe放在mysql server\bin。使用mysql命令时，环境变量Path中要包含mysql server\bin。  
+创建TABLE需要与DATABASE关联，所以要存在DB才能创建表。创建表之前要USE *database_name*.也可以在命令提示符里添加参数来启动对应的数据库  
 INSERT INTO *table_name*   
-VALUES (V1,V2,V3)Ĭ������¶�Ӧ��ֵ�������  
-UPDATA �ڲ���WHERE ��������ʱ���Ὣһ����column��ֵ���޸�  
-��CREATE TABLEʱ��ȷ����column���Ͷ�Ӧ���������ͣ�����columnʹ��ALTER    
+VALUES (V1,V2,V3)默认情况下对应将值横向插入  
+UPDATA 在不加WHERE 限制条件时，会将一整个column的值都修改  
+在CREATE TABLE时就确定了column数和对应的数据类型，添加column使用ALTER    
 ALTER TABLE :  
 ADD COLUMN  
 DROP COLUMN   
 MODIFY COLUMN  *change the type of certain column*  
 RENAME COLUMN *old_column_name* TO *new_column_name*  
 
-��mysql������Ҫconnector/j��jar��������Referenced Libraries��(*VSCode*)  
+与mysql连接需要connector/j的jar包，放在Referenced Libraries中(*VSCode*)  
 
-## MySQL����
-����(transaction)�Ƿ��ʲ����ܲ��������������һ�����ݿ�������У���Щ������һ�����ɷָ�ġ�Ҳ����˵��һ�������еĲ���Ҫô��ִ�У�Ҫô����ִ�С�  
-������˵������ת���漰�������ݿ����
-1. �ӱ�ת�˻���������
-2. �������Ŀ���˻�
+## MySQL事务
+事务(transaction)是访问并可能操作各种数据项的一个数据库操作序列，这些操作是一个不可分割的。也就是说，一套事务中的操作要么都执行，要么都不执行。  
+举例来说，进行转账涉及两个数据库操作
+1. 从被转账户划出款项
+2. 将款项划入目标账户
 
-�����������Ϳ��Կ���һ��**����**����Ϊ����Ҫô��ִ��Ҫô����ִ�У��κ�һ��û��ִ�ж��ᵼ������  
+这两个操作就可以看作一个**事务**，因为二者要么都执行要么都不执行，任何一个没有执行都会导致问题  
 
-һ������߱�**ACID����**��
-1. ԭ����(Atomicity)�������е�ȫ�����������ݿ����ǲ��ɷָ�ģ�Ҫôȫ����ɣ�Ҫôȫ����ִ��
-2. һ����(Consistency)����������ִ�е�������ִ�н�������밴ĳһ˳�� ����ִ�еĽ����һ��
-3. ������(Isolation)�������ִ�в�����������ĸ��ţ�����ִ�е��м������������������͸����
-4. �־���(Durability):�����������ύ����ϵͳ���뱣֤����������ݿ�ĸı䲻����ʧ����ʹ���ݿ���ֹ���
+一个事务具备**ACID特性**：
+1. 原子性(Atomicity)：事务中的全部操作在数据库中是不可分割的，要么全部完成，要么全部不执行
+2. 一致性(Consistency)：几个并行执行的事务，其执行结果必须与按某一顺序 串行执行的结果相一致
+3. 隔离性(Isolation)：事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的
+4. 持久性(Durability):对于任意已提交事务，系统必须保证该事务对数据库的改变不被丢失，即使数据库出现故障
 
-�����ACID�����ɹ�ϵ���ݿ�ϵͳ(DBMS)��ʵ�֡����磬DBMS����**��־**����֤�����ԭ���ԡ�һ���Ժͳ־��ԡ�**��־��¼����������ݿ������ĸ���**�����ĳ��������ִ�й����з������󣬾Ϳ��Ը�����־������������ݿ������ĸ��£�ʹ�����ݿ�ع���ִ������ǰ�ĳ�ʼ״̬��  
-��������ĸ����ԣ�DBMS�ǲ���**������**��ʵ�ֵġ����������ͬʱ�������ݿ�����ͬ������ʱ��ֻ�����������������ܸ��¸����ݣ������������ȴ���ֱ��ǰһ�������ͷ�����������������л�����¸����ݡ�  
-*��������Ҳ�ᵼ��������������*  
+事务的ACID特性由关系数据库系统(DBMS)来实现。比如，DBMS采用**日志**来保证事务的原子性、一致性和持久性。**日志记录了事务对数据库所作的更新**，如果某个事务在执行过程中发生错误，就可以根据日志撤销事务对数据库已做的更新，使得数据库回滚到执行事务前的初始状态。  
+对于事务的隔离性，DBMS是采用**锁机制**来实现的。当多个事务同时更新数据库中相同的数据时，只允许持有锁的事务能更新该数据，其他事务必须等待，直到前一个事务释放了锁，其他事务才有机会更新该数据。  
+*但锁机制也会导致死锁这种问题*  
 
-## MySQL��ʽ
-MySQL��ʽָ������������ݿ�ʱӦ�����ص�ԭ��һ������������Ϊ**����ʽ**��  
-* ��һ��ʽ��ÿ�в��ɲ�֣���ͬһ���в����ж��ֵ
-* �ڶ���ʽ��ÿ�����������
-* ������ʽ��������֮��û�д��ݺ���������ϵ
+## MySQL范式
+MySQL范式指的是在设计数据库时应该遵守的原则，一般有三个，称为**三大范式**。  
+* 第一范式：每列不可拆分，即同一列中不能有多个值
+* 第二范式：每列与主键相关
+* 第三范式：主键列之间没有传递函数依赖关系
 
-*������Ψһ��ʶ����ÿ�е��л�һ���С�*  
-*�������ӷ�����������һ�л�һ���У������е�ֵ������ʶÿһ��*  
-*���������������**Ψһֵ***  
-*������ʽ����˵������Ҫ��ÿһ�е����ݶ�������ֱ����ض����ܼ�����*  
+*主键：唯一标识表中每行的列或一组列。*  
+*上述句子分析：主键是一列或一组列，这列中的值用来标识每一行*  
+*所以主键必须包含**唯一值***  
+*第三范式换个说法，即要求每一列的数据都和主键直接相关而不能间接相关*  
 
 ## MySQL DATATYPE
 ### String DATATYPE

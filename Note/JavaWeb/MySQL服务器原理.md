@@ -1,6 +1,6 @@
-## Ò»ÌõSQLÖ¸Áî±»Ö´ÐÐµÄÁ÷³Ì
-- ÓëSQL·þÎñÆ÷½¨Á¢TCPÁ¬½Ó
-- MySQLµÇÂ¼ÈÏÖ¤
-- Ö´ÐÐSQLÓï¾ä
-- ¹Ø±ÕMySQL·þÎñÆ÷
-- ¹Ø±ÕTCPÁ¬½Ó
+## ä¸€æ¡SQLæŒ‡ä»¤è¢«æ‰§è¡Œçš„æµç¨‹
+- ä¸ŽSQLæœåŠ¡å™¨å»ºç«‹TCPè¿žæŽ¥
+- MySQLç™»å½•è®¤è¯
+- æ‰§è¡ŒSQLè¯­å¥
+- å…³é—­MySQLæœåŠ¡å™¨
+- å…³é—­TCPè¿žæŽ¥
