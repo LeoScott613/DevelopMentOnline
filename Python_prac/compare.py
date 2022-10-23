@@ -7,6 +7,6 @@ if(a==b):
 else:
     print('a!=b')
 if((b-a)==(c-b)):
-    print(str(one)+' is the answer')
+    print(str(b-a)+' is the answer')
 else:
     print('unknown')
