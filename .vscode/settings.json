@@ -17,7 +17,8 @@
         "*.tcc": "cpp",
         "complex": "cpp",
         "iomanip": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "ostream": "cpp"
     },
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
