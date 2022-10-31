@@ -13,5 +13,6 @@ class thread:
         print()
 # main=thread()
 # main.run()
-# 上面两行要注释掉是因为这个模块被importp.py引用了，会执行两次
+# 被import之后以上两句是会被执行的
+
 #summary:range函数产生的值不会包含终点值的。起点值默认是1
