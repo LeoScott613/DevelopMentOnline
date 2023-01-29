@@ -1,0 +1,10 @@
+print('replace:{},{}'.format('first','second','third'))
+print('replace:{1},{0}'.format('first','second','third'))
+print('replace:{st},{nd}'.format('third',st='first',nd='second'))
+
+print('math:{:.3f}'.format(3.1415926))
+print('math:{:.10f}'.format(3.1415926))
+# print('math:{:.3d}'.format(3.1415926))
+print('math:{:>30f}'.format(3.1415926))
+print('math:{:<30f}'.format(3.1415926))
+print('math:{:^30f}'.format(3.1415926))

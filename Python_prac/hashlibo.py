@@ -1,7 +1,7 @@
-from hashlib import sha256
-from hashlib import md5
-hasher=sha256()
-md5mode=md5()
+from hashlib import sha256 as sha
+from hashlib import md5 as md
+hasher=sha()
+md5mode=md()
 name=b'lhx'  #byte type
 name2=b'fyy'
 
